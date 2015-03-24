@@ -50,6 +50,8 @@ public class Example {
                 worker.start();
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
                 worker.cancel();
+            } else if (command.startsWith("PING\t")) {
+                System.out.println("PONG\t"+parts[1]);
             } else {
                 System.err.println("Uhhuh!\nReceived: " + command);
                 System.exit(0);
