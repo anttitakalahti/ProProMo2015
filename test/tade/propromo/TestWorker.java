@@ -10,11 +10,8 @@ import static junit.framework.Assert.assertEquals;
 
 public class TestWorker {
 
-    private ArrayList<double[][]> output = new ArrayList<>();
-
     @Test
     public void testPrintOutputIsCalledTwice() {
-
 
         DummyWorker worker = new DummyWorker();
 
@@ -22,11 +19,13 @@ public class TestWorker {
         worker.run();
         worker.run();
 
-        assertEquals(2, output.size());
+        assertEquals(2, worker.getOutput().size());
 
     }
 
     private class DummyWorker extends Worker {
+
+        private ArrayList<double[][]> output;
 
         @Override
         protected int[] getPreviousRoundValues() {
@@ -41,6 +40,8 @@ public class TestWorker {
         protected void writePredictionsToOutputFile(double[][] myGuess) {
             output.add(myGuess);
         }
+
+        public ArrayList<double[][]> getOutput() { return output; }
     }
 
 }
