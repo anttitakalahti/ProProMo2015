@@ -1,6 +1,9 @@
 package tade.propromo;
 
 
+import tade.propromo.predictor.Predictor;
+import tade.propromo.predictor.UniformPredictor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -21,20 +24,23 @@ import java.util.Scanner;
  */
 public class Worker extends Thread {
 
+    protected Predictor predictor;
     protected int rows;
     protected int[][] previousValues;
+    protected int round;
 
     private String currentRequest;
     private String currentContext;
     private String currentWork;
     private String currentInput;
 
-    private int round;
+
 
     public Worker() {
         round = 0;
         rows = 1000;
         previousValues = new int[303][rows];
+        predictor = new UniformPredictor();
     }
 
     public int getRound() { return round; }
@@ -56,14 +62,14 @@ public class Worker extends Thread {
         if (round == 0) {
 
             for (int row=0; row<myGuess.length; ++row) {
-                myGuess[row] = Predictor.getFirstGuess();
+                myGuess[row] = predictor.getFirstGuess();
             }
 
         } else {
 
             previousValues[round - 1] = getPreviousRoundValues();
             for (int row=0; row<myGuess.length; ++row) {
-                myGuess[row] = Predictor.predictRow(round, row, previousValues);
+                myGuess[row] = predictor.predictRow(round, row, previousValues);
             }
 
         }

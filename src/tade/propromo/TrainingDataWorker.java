@@ -1,5 +1,7 @@
 package tade.propromo;
 
+import tade.propromo.predictor.UniformPredictor;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,7 +22,11 @@ public class TrainingDataWorker extends Worker {
         System.out.println("Reading file: " + trainingDataFileFullPath);
         initializeTestDataFromFile(trainingDataFileFullPath);
         Collections.shuffle(testData);
+
         rows = testData.size();
+        previousValues = new int[303][rows];
+        round = 0;
+        predictor = new UniformPredictor();
 
         System.out.println("Got " + rows + " rows.");
     }
@@ -32,7 +38,7 @@ public class TrainingDataWorker extends Worker {
         String line;
         while((line = br.readLine()) != null){
             testData.add(getValues(line));
-            if (testData.size() == 2) { break; } // speed == king
+            if (testData.size() == 2000) { break; } // speed == king
         }
         br.close();
         fr.close();
@@ -60,6 +66,8 @@ public class TrainingDataWorker extends Worker {
      */
     public double calculateScore() {
 
+        System.out.println("Calculating the score.");
+
         double[] rowScores = new double[previousValues[0].length];
         Arrays.fill(rowScores, 0d);
 
@@ -73,7 +81,7 @@ public class TrainingDataWorker extends Worker {
                 double predictedProbability = output.get(column)[row][correctValue];
 
 
-                System.out.println("col: " + column + " row: " + row + " actual: " + correctValue + " with a probability of: " + predictedProbability);
+                // System.out.println("col: " + column + " row: " + row + " actual: " + correctValue + " with a probability of: " + predictedProbability);
 
                 rowScores[row] += predictedProbability;
             }
