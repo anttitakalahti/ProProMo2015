@@ -5,4 +5,4 @@ WORKDIR /usr/src/app
 
 ONBUILD ADD . /usr/src/app
 
-ONBUILD RUN mvn clean compile exec:java
+CMD cd /usr/src/app && mvn clean compile exec:java
