@@ -21,17 +21,23 @@ import java.util.Scanner;
  */
 public class Worker extends Thread {
 
+    protected int rows;
+    protected int[][] previousValues;
+
     private String currentRequest;
     private String currentContext;
     private String currentWork;
     private String currentInput;
-    private static int[][] context;
+
     private int round;
 
     public Worker() {
-        context = new int[303][1000];
         round = 0;
+        rows = 1000;
+        previousValues = new int[303][rows];
     }
+
+    public int getRound() { return round; }
 
     public void updateData(String command) {
         String[] parts = command.split("\\t");
@@ -45,7 +51,7 @@ public class Worker extends Thread {
     @Override
     public void run() {
 
-        double[][] myGuess = new double[1000][100];    // thousand rows, hundred values per row.
+        double[][] myGuess = new double[rows][100];    // hundred values per line.
 
         if (round == 0) {
 
@@ -55,9 +61,9 @@ public class Worker extends Thread {
 
         } else {
 
-            context[round - 1] = getPreviousRoundValues();
+            previousValues[round - 1] = getPreviousRoundValues();
             for (int i=0; i<myGuess.length; ++i) {
-                myGuess[i] = Predictor.predictRow(round, i, context);
+                myGuess[i] = Predictor.predictRow(round, i, previousValues);
             }
 
         }
@@ -110,7 +116,7 @@ public class Worker extends Thread {
         return sb.toString();
     }
 
-    private static int[] getValues(String line) {
+    protected static int[] getValues(String line) {
         String[] parts = line.split(",");
         int[] result = new int[parts.length];
         for (int i = 0; i<parts.length; i++) {
