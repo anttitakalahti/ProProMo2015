@@ -3,6 +3,10 @@ package tade.propromo.predictor;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * These are the relevant bits from Duvins original code
+ * https://github.com/verwijnen/ProProMo2015/blob/master/src/org/duvin/propromo2015/Example.java
+ */
 public class DuvinsPredictor implements Predictor {
 
     @Override
