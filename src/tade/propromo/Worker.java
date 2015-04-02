@@ -55,15 +55,15 @@ public class Worker extends Thread {
 
         if (round == 0) {
 
-            for (double[] row : myGuess) {
-                row = Predictor.getFirstGuess();
+            for (int row=0; row<myGuess.length; ++row) {
+                myGuess[row] = Predictor.getFirstGuess();
             }
 
         } else {
 
             previousValues[round - 1] = getPreviousRoundValues();
-            for (int i=0; i<myGuess.length; ++i) {
-                myGuess[i] = Predictor.predictRow(round, i, previousValues);
+            for (int row=0; row<myGuess.length; ++row) {
+                myGuess[row] = Predictor.predictRow(round, row, previousValues);
             }
 
         }

@@ -73,7 +73,7 @@ public class TrainingDataWorker extends Worker {
                 double predictedProbability = output.get(column)[row][correctValue];
 
 
-                System.out.println("actual: " + correctValue + " with a probability of: " + predictedProbability);
+                System.out.println("col: " + column + " row: " + row + " actual: " + correctValue + " with a probability of: " + predictedProbability);
 
                 rowScores[row] += predictedProbability;
             }
