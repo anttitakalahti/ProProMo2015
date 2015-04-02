@@ -13,3 +13,7 @@ Run the docker:
 
 Once again the actual run command is given in the Dockerfile.
 The -i stands for interactive, so you can simulate the client and send messages.
+
+To access your docker image:
+
+    docker run -it tade/propromo /bin/bash
