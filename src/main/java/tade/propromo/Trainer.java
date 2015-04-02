@@ -19,7 +19,8 @@ public class Trainer {
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
         double myScore = runWithWorker(new TrainingDataWorker(testData, new UniformPredictor()));
 
-        System.out.println("Baseline is: " + baseline + " and I got: " + myScore);
+        System.out.printf("Baseline is: %d or %.2f for each guess and I got: %d or %.2f for each guess.\n",
+                          (int)baseline, (baseline/testData.size()/303), (int)myScore, (myScore/testData.size()/303));
     }
 
     private static double runWithWorker(TrainingDataWorker worker) throws Exception {

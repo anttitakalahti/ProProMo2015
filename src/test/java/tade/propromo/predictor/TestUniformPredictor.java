@@ -1,8 +1,6 @@
 package tade.propromo.predictor;
 
 import org.junit.Test;
-import tade.propromo.predictor.Predictor;
-import tade.propromo.predictor.UniformPredictor;
 
 import java.util.stream.DoubleStream;
 
