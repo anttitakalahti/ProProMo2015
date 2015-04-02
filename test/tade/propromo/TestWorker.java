@@ -25,7 +25,7 @@ public class TestWorker {
 
     private class DummyWorker extends Worker {
 
-        private ArrayList<double[][]> output;
+        private ArrayList<double[][]> output = new ArrayList<>();
 
         @Override
         protected int[] getPreviousRoundValues() {
