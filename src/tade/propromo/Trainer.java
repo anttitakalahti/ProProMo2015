@@ -39,7 +39,7 @@ public class Trainer {
         String line;
         while((line = br.readLine()) != null){
             testData.add(Worker.getValues(line));
-            if (testData.size() == 2000) { break; } // speed == king
+            if (testData.size() == 2000) { break; } // It can't handle 60k+ rows.
         }
         br.close();
         fr.close();
