@@ -22,7 +22,7 @@ public class TrainingDataWorker extends Worker {
         round = 0;
         this.predictor = predictor;
 
-        System.out.println("Predictor: " + predictor.getClass() + " with " + rows + " rows.");
+        System.out.println("  Predictor: " + predictor.getClass() + " with " + rows + " rows.");
     }
 
     @Override
@@ -40,9 +40,6 @@ public class TrainingDataWorker extends Worker {
     }
 
     public double calculateScore() {
-
-        System.out.println("Calculating the score.");
-
         double[] rowScores = new double[previousValues[0].length];
         Arrays.fill(rowScores, 0d);
 
@@ -55,10 +52,8 @@ public class TrainingDataWorker extends Worker {
                 // myGuess = new double[rows][100];    // hundred values per line.
                 double predictedProbability = output.get(column)[row][correctValue];
 
-
-                // System.out.println("col: " + column + " row: " + row + " actual: " + correctValue + " with a probability of: " + predictedProbability);
-
                 rowScores[row] += predictedProbability;
+
             }
         }
 

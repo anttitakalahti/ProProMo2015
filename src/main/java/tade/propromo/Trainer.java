@@ -18,10 +18,13 @@ public class Trainer {
         Collections.shuffle(testData);
 
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
+        double currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
         double myScore = runWithWorker(new TrainingDataWorker(testData, new ZeroPredictor()));
 
-        System.out.printf("Baseline is: %d or %.2f for each guess and I got: %d or %.2f for each guess.\n",
-                          (int)baseline, (baseline/testData.size()/303), (int)myScore, (myScore/testData.size()/303));
+        System.out.printf("Baseline is: %.4f for each guess current best gives %.4f and I got: %.4f for each guess.\n",
+                          (baseline/testData.size()/303),
+                          (currentBestPredictor/testData.size()/303),
+                          (myScore/testData.size()/303));
     }
 
     private static double runWithWorker(TrainingDataWorker worker) throws Exception {

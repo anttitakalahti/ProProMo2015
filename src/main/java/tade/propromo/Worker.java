@@ -3,6 +3,7 @@ package tade.propromo;
 
 import tade.propromo.predictor.Predictor;
 import tade.propromo.predictor.UniformPredictor;
+import tade.propromo.predictor.ZeroPredictor;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,6 +25,8 @@ import java.util.Scanner;
  */
 public class Worker extends Thread {
 
+    public static final Predictor MY_BEST_PREDICTOR = new ZeroPredictor();
+
     protected Predictor predictor;
     protected int rows;
     protected int[][] previousValues;
@@ -40,7 +43,7 @@ public class Worker extends Thread {
         round = 0;
         rows = 1000;
         previousValues = new int[303][rows];
-        predictor = new UniformPredictor();
+        predictor = MY_BEST_PREDICTOR;
     }
 
     public int getRound() { return round; }
