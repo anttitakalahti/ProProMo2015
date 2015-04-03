@@ -2,6 +2,7 @@ package tade.propromo;
 
 import tade.propromo.predictor.DuvinsPredictor;
 import tade.propromo.predictor.UniformPredictor;
+import tade.propromo.predictor.ZeroPredictor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,7 +18,7 @@ public class Trainer {
         Collections.shuffle(testData);
 
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
-        double myScore = runWithWorker(new TrainingDataWorker(testData, new UniformPredictor()));
+        double myScore = runWithWorker(new TrainingDataWorker(testData, new ZeroPredictor()));
 
         System.out.printf("Baseline is: %d or %.2f for each guess and I got: %d or %.2f for each guess.\n",
                           (int)baseline, (baseline/testData.size()/303), (int)myScore, (myScore/testData.size()/303));
