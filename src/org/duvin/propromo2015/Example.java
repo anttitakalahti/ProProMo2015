@@ -126,7 +126,7 @@ public class Example {
                 }
                 File outputFile = new File(outputDir, "output.csv");
                 PrintWriter pw = new PrintWriter(outputFile);
-                if (round == 0) {
+                if (round++ == 0) {
                     //don't have context yet
                     context = new int[303][1000];
 
