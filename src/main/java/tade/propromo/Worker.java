@@ -121,7 +121,7 @@ public class Worker extends Thread {
     public static String arrayToCSV(BigDecimal[] a) {
         StringBuilder sb = new StringBuilder();
         for (BigDecimal d : a) {
-            sb.append(d.toString() + ",");
+            sb.append(d.toPlainString() + ",");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
