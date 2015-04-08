@@ -35,7 +35,7 @@ public class Worker extends Thread {
     protected int round;
 
     private String currentRequest;
-    private String currentContext;
+    private String currentContextId;
     private String currentWork;
     private String currentInput;
 
@@ -50,11 +50,11 @@ public class Worker extends Thread {
 
     public int getRound() { return round; }
 
-    public void updateData(String currentRequest, String currentContext, String currentWork, String currentInput) {
-        this.currentRequest = currentRequest;
-        this.currentContext = currentContext;
-        this.currentWork    = currentWork;
-        this.currentInput   = currentInput;
+    public void updateData(String currentRequest, String currentContextId, String currentWork, String currentInput) {
+        this.currentRequest   = currentRequest;
+        this.currentContextId = currentContextId;
+        this.currentWork      = currentWork;
+        this.currentInput     = currentInput;
     }
 
     @Override

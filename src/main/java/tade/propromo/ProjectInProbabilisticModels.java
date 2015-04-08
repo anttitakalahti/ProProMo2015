@@ -22,9 +22,7 @@ public class ProjectInProbabilisticModels {
         while (true) {
             String command = scanner.nextLine();
             String[] parts = command.split("\\t");
-            String currentRequest = parts[1];
-            String currentContext = parts[2];
-
+            String currentRequestId = parts[1];
 
             if (command.startsWith("SETUP\t")) {
 
@@ -32,14 +30,15 @@ public class ProjectInProbabilisticModels {
                 System.out.println("ALIVE\t" + refineryId + "\tinfo=Project in Probabilistic Models by Antti Takalahti\tversion=0.002");
 
             } else if (command.startsWith("PERFORM\t") && !refineryId.isEmpty()) {
-                String currentWork    = parts[3];
-                String currentInput   = parts[4];
-                worker.updateData(currentRequest, currentContext, currentWork, currentInput);
+                String currentContextId = parts[2];
+                String currentWork      = parts[3];
+                String currentInput     = parts[4];
+                worker.updateData(currentRequestId, currentContextId, currentWork, currentInput);
                 worker.run();
                 /* TODO run here is silly. You should keep previous values here and
                  *      use thread.start() so that we can abort if the need comes.
                  */
-                System.out.println("READY\t" + currentRequest + "\t" + currentWork + "/output/output.csv");
+                System.out.println("READY\t" + currentRequestId + "\t" + currentWork + "/output/output.csv");
 
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
 
