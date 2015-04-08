@@ -1,6 +1,8 @@
 package tade.propromo.predictor;
 
+import java.math.BigDecimal;
+
 public interface Predictor {
-    public double[] getFirstGuess();
-    public double[] predictRow(int round, int row, int[][] previousValues);
+    public BigDecimal[] getFirstGuess();
+    public BigDecimal[] predictRow(int round, int row, int[][] previousValues);
 }

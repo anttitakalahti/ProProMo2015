@@ -8,6 +8,8 @@ import tade.propromo.predictor.ZeroPredictor;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
@@ -60,7 +62,7 @@ public class Worker extends Thread {
     @Override
     public void run() {
 
-        double[][] myGuess = new double[rows][100];    // hundred values per line.
+        BigDecimal[][] myGuess = new BigDecimal[rows][100];    // hundred values per line.
 
         if (round == 0) {
 
@@ -82,12 +84,12 @@ public class Worker extends Thread {
         round++;
     }
 
-    protected void writePredictionsToOutputFile(double[][] myGuess) {
+    protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
         PrintWriter pw = null;
 
         try {
             pw = getPrintWriter();
-            for (double[] vector : myGuess) {
+            for (BigDecimal[] vector : myGuess) {
                 if (Thread.currentThread().isInterrupted()) {
                     throw new InterruptedException();
                 }
@@ -116,10 +118,10 @@ public class Worker extends Thread {
         interrupt();
     }
 
-    public static String arrayToCSV(double[] a) {
+    public static String arrayToCSV(BigDecimal[] a) {
         StringBuilder sb = new StringBuilder();
-        for (double d : a) {
-            sb.append("" + d + ",");
+        for (BigDecimal d : a) {
+            sb.append(d.toString() + ",");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();

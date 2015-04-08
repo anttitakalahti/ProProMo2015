@@ -2,6 +2,7 @@ package tade.propromo;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
@@ -24,7 +25,7 @@ public class TestWorker {
 
     private class DummyWorker extends Worker {
 
-        private ArrayList<double[][]> output = new ArrayList<>();
+        private ArrayList<BigDecimal[][]> output = new ArrayList<>();
 
         @Override
         protected int[] getPreviousRoundValues() {
@@ -36,11 +37,11 @@ public class TestWorker {
         }
 
         @Override
-        protected void writePredictionsToOutputFile(double[][] myGuess) {
+        protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
             output.add(myGuess);
         }
 
-        public ArrayList<double[][]> getOutput() { return output; }
+        public ArrayList<BigDecimal[][]> getOutput() { return output; }
     }
 
 }

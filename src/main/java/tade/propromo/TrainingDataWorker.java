@@ -2,6 +2,8 @@ package tade.propromo;
 
 import tade.propromo.predictor.Predictor;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.DoubleStream;
@@ -9,7 +11,7 @@ import java.util.stream.DoubleStream;
 public class TrainingDataWorker extends Worker {
 
     private ArrayList<int[]> testData;
-    private ArrayList<double[][]> output;
+    private ArrayList<BigDecimal[][]> output;
 
     public TrainingDataWorker(ArrayList<int[]> testData, Predictor predictor) throws Exception {
 
@@ -35,13 +37,13 @@ public class TrainingDataWorker extends Worker {
     }
 
     @Override
-    protected void writePredictionsToOutputFile(double[][] myGuess) {
+    protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
         output.add(myGuess);
     }
 
-    public double calculateScore() {
-        double[] rowScores = new double[previousValues[0].length];
-        Arrays.fill(rowScores, 0d);
+    public BigDecimal calculateScore() {
+        BigDecimal[] rowScores = new BigDecimal[previousValues[0].length];
+        Arrays.fill(rowScores, BigDecimal.ZERO);
 
         for (int column=0; column<previousValues.length; ++column) {
             for (int row=0; row<previousValues[0].length; ++row) {
@@ -49,14 +51,18 @@ public class TrainingDataWorker extends Worker {
                 // previousValues = new int[303][rows];
                 int correctValue = previousValues[column][row];
 
-                // myGuess = new double[rows][100];    // hundred values per line.
-                double predictedProbability = output.get(column)[row][correctValue];
+                // myGuess = new BigDecimal[rows][100];    // hundred values per line.
+                BigDecimal predictedProbability = output.get(column)[row][correctValue];
 
-                rowScores[row] += predictedProbability;
+                rowScores[row] = rowScores[row].add(predictedProbability);
 
             }
         }
 
-        return DoubleStream.of(rowScores).sum();
+        BigDecimal totalScore = BigDecimal.ZERO;
+        for (BigDecimal rowScore : rowScores) {
+            totalScore = totalScore.add(rowScore);
+        }
+        return totalScore.setScale(4, RoundingMode.HALF_UP);
     }
 }

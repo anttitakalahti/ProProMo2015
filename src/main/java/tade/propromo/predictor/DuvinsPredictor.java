@@ -1,5 +1,7 @@
 package tade.propromo.predictor;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -9,38 +11,38 @@ import java.util.Random;
  */
 public class DuvinsPredictor implements Predictor {
 
+    public static final BigDecimal MINIMAL = BigDecimal.ONE.divide(new BigDecimal(10000000));
+
     @Override
-    public double[] getFirstGuess() {
+    public BigDecimal[] getFirstGuess() {
         Random r = new Random();
-        double[] result = new double[100];
-        double sum = 0;
-        double value;
+        BigDecimal[] result = new BigDecimal[100];
+        BigDecimal sum = new BigDecimal(0).setScale(10, RoundingMode.HALF_UP);
         for (int i = 0; i < 100; i++) {
-            result[i] = value = r.nextDouble();
-            sum += value;
+            result[i] = new BigDecimal(r.nextDouble()).setScale(10, RoundingMode.HALF_UP);
+            sum = sum.add(result[i]);
         }
         //normalize
         for (int i = 0; i < 100; i++) {
-            result[i] /= sum;
+            result[i] = result[i].divide(sum, RoundingMode.HALF_UP);
         }
         return result;
     }
 
     @Override
-    public double[] predictRow(int round, int row, int[][] previousValues) {
+    public BigDecimal[] predictRow(int round, int row, int[][] previousValues) {
         int last = previousValues[round-1][row];
-        double minimal = 0.0000001;
-        double[] result = new double[100];
+        BigDecimal[] result = new BigDecimal[100];
         //make sure we don't have 0 probability
-        Arrays.fill(result, minimal);
+        Arrays.fill(result, MINIMAL);
         if (last == 0) {
             //put all but minimal to bet on zero
-            result[0] = 1-99*minimal;
+            result[0] = BigDecimal.ONE.add(new BigDecimal(99).multiply(MINIMAL).negate());
         } else {
             //25% to adjacent values, 49.999% to previous
-            result[last]=.5-97*minimal;
-            result[last-1]=.25;
-            result[last+1]=.25;
+            result[last]   = BigDecimal.ONE.divide(new BigDecimal(2)).add(new BigDecimal(97).multiply(MINIMAL).negate());
+            result[last-1] = BigDecimal.ONE.divide(new BigDecimal(4));
+            result[last+1] = BigDecimal.ONE.divide(new BigDecimal(4));
         }
         return result;
     }

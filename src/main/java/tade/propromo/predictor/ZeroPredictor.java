@@ -1,22 +1,26 @@
 package tade.propromo.predictor;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 public class ZeroPredictor implements Predictor {
+
+    public static final BigDecimal OTHER_THAN_ZERO = BigDecimal.ONE.divide(new BigDecimal(10000000));
+
     @Override
-    public double[] getFirstGuess() {
+    public BigDecimal[] getFirstGuess() {
         return alwaysPredictZero();
     }
 
     @Override
-    public double[] predictRow(int round, int row, int[][] previousValues) {
+    public BigDecimal[] predictRow(int round, int row, int[][] previousValues) {
         return alwaysPredictZero();
     }
 
-    private double[] alwaysPredictZero() {
-        double[] predictions = new double[100];
-        Arrays.fill(predictions, 0.0000001);
-        predictions[0] = 1d - (99 * 0.0000001);
+    private BigDecimal[] alwaysPredictZero() {
+        BigDecimal[] predictions = new BigDecimal[100];
+        Arrays.fill(predictions, OTHER_THAN_ZERO);
+        predictions[0] = BigDecimal.ONE.add(new BigDecimal(99).multiply(OTHER_THAN_ZERO).negate());
         return predictions;
     }
 }
