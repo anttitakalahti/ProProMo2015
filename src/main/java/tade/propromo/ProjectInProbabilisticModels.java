@@ -26,7 +26,7 @@ public class ProjectInProbabilisticModels {
             if (command.startsWith("SETUP\t")) {
 
                 refineryId = parts[1];
-                System.out.println("ALIVE\t" + refineryId + "\tinfo=Project in Probabilistic Models by Antti Takalahti\tversion=0.001");
+                System.out.println("ALIVE\t" + refineryId + "\tinfo=Project in Probabilistic Models by Antti Takalahti\tversion=0.002");
 
             } else if (command.startsWith("PERFORM\t") && !refineryId.isEmpty()) {
 
