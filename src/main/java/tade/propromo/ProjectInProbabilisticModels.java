@@ -31,7 +31,7 @@ public class ProjectInProbabilisticModels {
             } else if (command.startsWith("PERFORM\t") && !refineryId.isEmpty()) {
 
                 worker.updateData(command);
-                worker.start();
+                worker.run();
 
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
 
