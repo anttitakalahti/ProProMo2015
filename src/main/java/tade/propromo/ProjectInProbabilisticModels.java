@@ -22,6 +22,10 @@ public class ProjectInProbabilisticModels {
         while (true) {
             String command = scanner.nextLine();
             String[] parts = command.split("\\t");
+            String currentRequest = parts[1];
+            String currentContext = parts[2];
+            String currentWork    = parts[3];
+            String currentInput   = parts[4];
 
             if (command.startsWith("SETUP\t")) {
 
@@ -30,12 +34,12 @@ public class ProjectInProbabilisticModels {
 
             } else if (command.startsWith("PERFORM\t") && !refineryId.isEmpty()) {
 
-                worker.updateData(command);
+                worker.updateData(currentRequest, currentContext, currentWork, currentInput);
                 worker.run();
                 /* TODO run here is silly. You should keep previous values here and
                  *      use thread.start() so that we can abort if the need comes.
                  */
-
+                System.out.println("READY\t" + currentRequest + "\t" + currentWork + "/output/output.csv");
 
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
 

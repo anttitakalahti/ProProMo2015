@@ -50,13 +50,11 @@ public class Worker extends Thread {
 
     public int getRound() { return round; }
 
-    public void updateData(String command) {
-        String[] parts = command.split("\\t");
-
-        currentRequest = parts[1];
-        currentContext = parts[2];
-        currentWork    = parts[3];
-        currentInput   = parts[4];
+    public void updateData(String currentRequest, String currentContext, String currentWork, String currentInput) {
+        this.currentRequest = currentRequest;
+        this.currentContext = currentContext;
+        this.currentWork    = currentWork;
+        this.currentInput   = currentInput;
     }
 
     @Override
