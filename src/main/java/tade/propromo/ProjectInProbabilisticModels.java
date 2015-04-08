@@ -32,6 +32,10 @@ public class ProjectInProbabilisticModels {
 
                 worker.updateData(command);
                 worker.run();
+                /* TODO run here is silly. You should keep previous values here and
+                 *      use thread.start() so that we can abort if the need comes.
+                 */
+
 
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
 
