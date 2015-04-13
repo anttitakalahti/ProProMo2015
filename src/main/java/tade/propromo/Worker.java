@@ -125,7 +125,7 @@ public class Worker extends Thread {
         return sb.toString();
     }
 
-    protected static int[] getValues(String line) {
+    public static int[] getValues(String line) {
         String[] parts = line.split(",");
         int[] result = new int[parts.length];
         for (int i = 0; i<parts.length; i++) {
