@@ -17,3 +17,8 @@ The -i stands for interactive, so you can simulate the client and send messages.
 To access your docker image:
 
     docker run -it tade/propromo /bin/bash
+
+Ideas:
+- see if already seen values have higher prob.
+- see if each position has similar value prob. distribution.
+- check the 5k pattern and see how early we can be sure we are seeing that pattern.
