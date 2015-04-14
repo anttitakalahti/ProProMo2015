@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class ZeroPredictor implements Predictor {
 
-    public static final BigDecimal OTHER_THAN_ZERO = BigDecimal.ONE.divide(new BigDecimal(10000000));
-
     @Override
     public BigDecimal[] getFirstGuess() {
         return alwaysPredictZero();
@@ -19,8 +17,8 @@ public class ZeroPredictor implements Predictor {
 
     private BigDecimal[] alwaysPredictZero() {
         BigDecimal[] predictions = new BigDecimal[100];
-        Arrays.fill(predictions, OTHER_THAN_ZERO);
-        predictions[0] = BigDecimal.ONE.add(new BigDecimal(99).multiply(OTHER_THAN_ZERO).negate());
+        Arrays.fill(predictions, MINIMAL);
+        predictions[0] = BigDecimal.ONE.add(new BigDecimal(99).multiply(MINIMAL).negate());
         return predictions;
     }
 }
