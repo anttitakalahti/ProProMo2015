@@ -5,6 +5,7 @@ import java.math.RoundingMode;
 
 public interface Predictor {
 
+    public static final int COLS = 303;
     public static final int SCALE = 10;
     public static final BigDecimal MINIMAL = BigDecimal.ONE.divide(new BigDecimal(10000000));
 

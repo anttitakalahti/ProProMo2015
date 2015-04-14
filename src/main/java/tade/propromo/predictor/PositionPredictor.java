@@ -1,6 +1,6 @@
 package tade.propromo.predictor;
 
-import tade.propromo.Worker;
+import tade.propromo.Trainer;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -9,39 +9,21 @@ import java.util.Arrays;
 
 public class PositionPredictor implements Predictor {
 
-    public static final int ROWS = 67785;
-    public static final int COLS = 303;
-
-    public static final String TRAINING_FILE_PATH = "data1.csv";
-
     private int[][] trainingData;
     private BigDecimal[] zeroProbabilities;
-
-    private int lastPredictedPosition;
-    private BigDecimal[] lastPrediction;
+    private int[] countsForSixteen;
+    private int[] countsForFifty;
 
     public PositionPredictor() throws IOException {
-        initializeTrainingData();
+        trainingData = Trainer.initializeTestDataFromFile();
         countZeroProbabilities();
 
-        lastPredictedPosition = -1;
-        lastPrediction = null;
+        countsForSixteen = getCountsForSixteen();
+        countsForFifty = getCountsForFifty();
+
     }
 
-    private void initializeTrainingData() throws IOException {
-        trainingData = new int[ROWS][];
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(TRAINING_FILE_PATH).getFile());
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        int index = 0;
-        while((line = br.readLine()) != null){
-            trainingData[index++] = Worker.getValues(line);
-        }
-        br.close();
-        fr.close();
-    }
+
 
     private void countZeroProbabilities() {
         int[] counts = new int[COLS];
@@ -75,42 +57,53 @@ public class PositionPredictor implements Predictor {
         Arrays.fill(predictions, MINIMAL);
 
 
-        if (zeroProbabilities[position].compareTo(new BigDecimal(50).divide(new BigDecimal(100))) > 0) {
-            predictions[0] = BigDecimal.ONE;
+        if (position == 16) {
+
+            predictions = predictSixteen(previousValues);
+
+        } else if (position == 50) {
+
+            predictions = predictFifty(previousValues);
+
         } else {
-
-            if (lastPredictedPosition == position) { return lastPrediction; }
-
+            predictions[0] = BigDecimal.ONE;
 
 
-            System.out.println(position);
+            if (zeroProbabilities[position].compareTo(new BigDecimal(50).divide(new BigDecimal(100))) < 0) {
 
-            System.out.print("    " + previousValues[0]);
-            for (int p=1; p < position; ++p) {
-                System.out.print("," + previousValues[p]);
+                // System.out.printf("position %d has zero probability of %.6f \n", position, zeroProbabilities[position]);
+
             }
-            System.out.println("");
 
-
-            int[] counts = getValueCountsForPosition(position);
-            for (int value=0; value<counts.length; ++value) {
-                if (counts[value] > 5000) {
-                    predictions[value] = new BigDecimal(counts[value]);
-                    System.out.println("  " + value + " - " + counts[value] + " times.");
-
-
-                }
-            }
-            predictions = normalize(predictions);
-
-
-
-            lastPredictedPosition = position;
-            lastPrediction = predictions;
-            return predictions;
         }
 
         return normalize(predictions);
+    }
+
+    private BigDecimal[] predictSixteen(int[] previousValues) {
+        BigDecimal[] prediction = new BigDecimal[100];
+        Arrays.fill(prediction, MINIMAL);
+
+        if (Arrays.stream(previousValues).allMatch(x -> x == 0)) {
+
+            int[] relevantValues = new int[] {0,68,69};
+            for (int value : relevantValues) {
+                prediction[value] = new BigDecimal(countsForSixteen[value]);
+
+            }
+
+        } else {
+            prediction[0] = BigDecimal.ONE;
+        }
+
+        return prediction;
+    }
+
+    private BigDecimal[] predictFifty(int[] previousValues) {
+        BigDecimal[] prediction = new BigDecimal[100];
+        Arrays.fill(prediction, MINIMAL);
+
+        return prediction;
     }
 
     private int[] getValueCountsForPosition(int position) {
@@ -118,6 +111,37 @@ public class PositionPredictor implements Predictor {
         for (int[] row : trainingData) {
             counts[row[position]]++;
         }
+        return counts;
+    }
+
+    private int[] getCountsForSixteen() {
+        int[] counts = new int[100];
+        for(int[] line : trainingData) {
+            if (Arrays.stream(Arrays.copyOf(line, 15)).allMatch(x -> x == 0)) {
+                counts[line[16]]++;
+            }
+        }
+
+
+        for(int value=0; value<counts.length; ++value) {
+            // System.out.println("value :" + value + " has count of: " + counts[value]);
+        }
+
+        System.out.println(Arrays.stream(counts).sum());
+        return counts;
+    }
+
+    private int[] getCountsForFifty() {
+        int[] counts = new int[100];
+        for(int[] line : trainingData) {
+
+            counts[line[50]]++;
+        }
+
+        for(int value=0; value<counts.length; ++value) {
+            System.out.println("value :" + value + " has count of: " + counts[value]);
+        }
+
         return counts;
     }
 }

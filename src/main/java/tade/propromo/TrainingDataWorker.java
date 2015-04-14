@@ -10,16 +10,16 @@ import java.util.stream.DoubleStream;
 
 public class TrainingDataWorker extends Worker {
 
-    private ArrayList<int[]> testData;
+    private int[][] testData;
     private ArrayList<BigDecimal[][]> output;
 
-    public TrainingDataWorker(ArrayList<int[]> testData, Predictor predictor) throws Exception {
+    public TrainingDataWorker(int[][] testData, Predictor predictor) throws Exception {
 
         output = new ArrayList<>();
         this.testData = testData;
 
 
-        rows = testData.size();
+        rows = testData.length;
         previousValues = new int[303][rows];
         round = 0;
         this.predictor = predictor;
@@ -29,9 +29,9 @@ public class TrainingDataWorker extends Worker {
 
     @Override
     protected int[] getPreviousRoundValues() {
-        int[] previousRoundValues = new int[testData.size()];
-        for (int i=0; i<previousRoundValues.length; ++i) {
-            previousRoundValues[i] = testData.get(i)[getRound() - 1];
+        int[] previousRoundValues = new int[testData.length];
+        for (int row=0; row<previousRoundValues.length; ++row) {
+            previousRoundValues[row] = testData[row][getRound() - 1];
         }
         return previousRoundValues;
     }
