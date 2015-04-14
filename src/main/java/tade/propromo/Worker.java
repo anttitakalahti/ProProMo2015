@@ -27,6 +27,7 @@ import java.util.Scanner;
  */
 public class Worker extends Thread {
 
+    public static final int DEFAULT_ROWS = 1000;
     public static final Predictor MY_BEST_PREDICTOR = new ZeroPredictor();
 
     protected Predictor predictor;
@@ -43,7 +44,7 @@ public class Worker extends Thread {
 
     public Worker() {
         round = 0;
-        rows = 1000;
+        rows = DEFAULT_ROWS;
         previousValues = new int[303][rows];
         predictor = MY_BEST_PREDICTOR;
     }
@@ -72,7 +73,7 @@ public class Worker extends Thread {
 
             previousValues[round - 1] = getPreviousRoundValues();
             for (int row=0; row<myGuess.length; ++row) {
-                myGuess[row] = predictor.predictRow(round, row, previousValues);
+                myGuess[row] = predictor.predictRow(round, row, getPreviousValues(round, row));
             }
 
         }
@@ -80,6 +81,14 @@ public class Worker extends Thread {
         writePredictionsToOutputFile(myGuess);
 
         round++;
+    }
+
+    private int[] getPreviousValues(int round, int row) {
+        int[] values = new int[round];
+        for(int p=0; p<round; ++p) {
+            values[p] = previousValues[p][row];
+        }
+        return values;
     }
 
     protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {

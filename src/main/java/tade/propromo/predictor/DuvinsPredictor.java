@@ -30,8 +30,8 @@ public class DuvinsPredictor implements Predictor {
     }
 
     @Override
-    public BigDecimal[] predictRow(int round, int row, int[][] previousValues) {
-        int last = previousValues[round-1][row];
+    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+        int last = previousValues[round-1];
         BigDecimal[] result = new BigDecimal[100];
         //make sure we don't have 0 probability
         Arrays.fill(result, MINIMAL);

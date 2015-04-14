@@ -28,7 +28,7 @@ public class Trainer {
         BigDecimal currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
         BigDecimal myScore = runWithWorker(new TrainingDataWorker(testData, new PositionPredictor()));
 
-        System.out.printf("Baseline is: %s for each guess current best gives %s and I got: %s for each guess.\n",
+        System.out.printf("Baseline is: %s for each guess. Current best gives %s and this one got: %s for each guess.\n",
                 baseline.divide(new BigDecimal(testData.size()), RoundingMode.HALF_UP)
                         .divide(new BigDecimal(303), RoundingMode.HALF_UP).setScale(4),
                 currentBestPredictor.divide(new BigDecimal(testData.size()), RoundingMode.HALF_UP)

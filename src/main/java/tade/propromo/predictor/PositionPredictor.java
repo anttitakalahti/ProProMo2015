@@ -17,9 +17,15 @@ public class PositionPredictor implements Predictor {
     private int[][] trainingData;
     private BigDecimal[] zeroProbabilities;
 
+    private int lastPredictedPosition;
+    private BigDecimal[] lastPrediction;
+
     public PositionPredictor() throws IOException {
         initializeTrainingData();
         countZeroProbabilities();
+
+        lastPredictedPosition = -1;
+        lastPrediction = null;
     }
 
     private void initializeTrainingData() throws IOException {
@@ -56,25 +62,62 @@ public class PositionPredictor implements Predictor {
 
     @Override
     public BigDecimal[] getFirstGuess() {
-        return predictPosition(0);
+        return predictPosition(0, new int[0]);
     }
 
     @Override
-    public BigDecimal[] predictRow(int round, int row, int[][] previousValues) {
-        return predictPosition(round);
+    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+        return predictPosition(round, previousValues);
     }
 
-    protected BigDecimal[] predictPosition(int position) {
+    protected BigDecimal[] predictPosition(int position, int[] previousValues) {
         BigDecimal[] predictions = new BigDecimal[100];
         Arrays.fill(predictions, MINIMAL);
 
 
-        if (zeroProbabilities[position].compareTo(new BigDecimal(99).divide(new BigDecimal(100))) > 0) {
+        if (zeroProbabilities[position].compareTo(new BigDecimal(50).divide(new BigDecimal(100))) > 0) {
             predictions[0] = BigDecimal.ONE;
         } else {
+
+            if (lastPredictedPosition == position) { return lastPrediction; }
+
+
+
             System.out.println(position);
+
+            System.out.print("    " + previousValues[0]);
+            for (int p=1; p < position; ++p) {
+                System.out.print("," + previousValues[p]);
+            }
+            System.out.println("");
+
+
+            int[] counts = getValueCountsForPosition(position);
+            for (int value=0; value<counts.length; ++value) {
+                if (counts[value] > 5000) {
+                    predictions[value] = new BigDecimal(counts[value]);
+                    System.out.println("  " + value + " - " + counts[value] + " times.");
+
+
+                }
+            }
+            predictions = normalize(predictions);
+
+
+
+            lastPredictedPosition = position;
+            lastPrediction = predictions;
+            return predictions;
         }
 
         return normalize(predictions);
+    }
+
+    private int[] getValueCountsForPosition(int position) {
+        int[] counts = new int[100];
+        for (int[] row : trainingData) {
+            counts[row[position]]++;
+        }
+        return counts;
     }
 }

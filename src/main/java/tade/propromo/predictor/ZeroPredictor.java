@@ -11,7 +11,7 @@ public class ZeroPredictor implements Predictor {
     }
 
     @Override
-    public BigDecimal[] predictRow(int round, int row, int[][] previousValues) {
+    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
         return alwaysPredictZero();
     }
 

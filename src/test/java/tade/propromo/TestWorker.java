@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -29,10 +30,8 @@ public class TestWorker {
 
         @Override
         protected int[] getPreviousRoundValues() {
-            int[] previousRoundValues = new int[100];
-            for (int i=0; i<previousRoundValues.length; ++i) {
-                previousRoundValues[i] = i;
-            }
+            int[] previousRoundValues = new int[Worker.DEFAULT_ROWS];
+            Arrays.fill(previousRoundValues, 0);
             return previousRoundValues;
         }
 
