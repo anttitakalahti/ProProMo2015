@@ -3,12 +3,12 @@
  */
 package org.duvin.propromo2015;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,11 +26,14 @@ public class Example {
     private static ExampleWorker worker;
     private static int[][] context;
     private static int round = 0;
+    private static DecimalFormat df = new DecimalFormat();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+
         Scanner s = new Scanner(System.in);
         //let repository know we're alive
         System.out.println("HELLO\t1.0");
@@ -51,7 +54,7 @@ public class Example {
             } else if (command.startsWith("ABORT\t") && !refineryId.isEmpty()) {
                 worker.cancel();
             } else if (command.startsWith("PING\t")) {
-                System.out.println("PONG\t"+parts[1]);
+                System.out.println("PONG\t" + parts[1]);
             } else {
                 System.err.println("Uhhuh!\nReceived: " + command);
                 System.exit(0);
@@ -60,9 +63,12 @@ public class Example {
     }
 
     public static String arrayToCSV(double[] a) {
+        df.setMaximumFractionDigits(340);
+        df.setMinimumFractionDigits(1);
+        df.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
         StringBuilder sb = new StringBuilder();
         for (double d : a) {
-            sb.append("" + d + ",");
+            sb.append(df.format(d)).append(",");
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
@@ -83,16 +89,16 @@ public class Example {
         }
         return result;
     }
-    
+
     private static int[] getValues(String line) {
         String[] parts = line.split(",");
         int[] result = new int[parts.length];
-        for (int i = 0; i<parts.length; i++) {
+        for (int i = 0; i < parts.length; i++) {
             result[i] = Integer.parseInt(parts[i]);
         }
         return result;
     }
-    
+
     private static double[] basedOnLastValue(int last) {
         double minimal = 0.0000001;
         double[] result = new double[100];
@@ -100,12 +106,12 @@ public class Example {
         Arrays.fill(result, minimal);
         if (last == 0) {
             //put all but minimal to bet on zero
-            result[0] = 1-99*minimal;
+            result[0] = 1 - 99 * minimal;
         } else {
             //25% to adjacent values, 49.999% to previous
-            result[last]=.5-97*minimal;
-            result[last-1]=.25;
-            result[last+1]=.25;
+            result[last] = .5 - 97 * minimal;
+            result[last - 1] = .25;
+            result[last + 1] = .25;
         }
         return result;
     }
@@ -140,10 +146,10 @@ public class Example {
                     }
                 } else {
                     //read context
-                    context[round-2] = getValues(s.nextLine());
+                    context[round - 2] = getValues(s.nextLine());
                     //now calculate based on context
-                    for (int i = 0; i<1000; i++) {
-                        myGuess[i] = basedOnLastValue(context[round-2][i]);
+                    for (int i = 0; i < 1000; i++) {
+                        myGuess[i] = basedOnLastValue(context[round - 2][i]);
                     }
                 }
                 for (double[] vector : myGuess) {
@@ -163,7 +169,7 @@ public class Example {
                 System.out.println("FAILED\t" + currentRequest + "\t" + currentWork + "/output/output.csv");
             }
         }
-        
+
         public void cancel() {
             interrupt();
         }

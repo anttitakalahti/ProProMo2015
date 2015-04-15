@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+spawn /usr/bin/java -cp duvin/ProProMo2015/src org.duvin.propromo2015.Example
+expect "HELLO\t1.0\n"
+send "SETUP\ta0000004f\tbig-sort\t0.1\tmain:1/1/1\n"
+expect "ALIVE\t*\n"
+for {set i 1} {$i < 304} {incr i 1} {
+	send "PERFORM\t$i\t1\twork/output$i\tin$i\n"
+	expect "READY*\n"
+}
