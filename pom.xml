@@ -37,7 +37,9 @@
             <resource>
                 <directory>src/main/resources/</directory>
                 <includes>
+                    <include>data1.csv</include>
                     <include>data2.csv</include>
+                    <include>line_numbers_for_round_1.txt</include>
                 </includes>
             </resource>
         </resources>
