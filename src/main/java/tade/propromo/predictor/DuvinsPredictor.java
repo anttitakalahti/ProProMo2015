@@ -13,7 +13,6 @@ public class DuvinsPredictor implements Predictor {
 
     public static final BigDecimal MINIMAL = BigDecimal.ONE.divide(new BigDecimal(10000000));
 
-    @Override
     public BigDecimal[] getFirstGuess() {
         Random r = new Random();
         BigDecimal[] result = new BigDecimal[100];
@@ -29,8 +28,8 @@ public class DuvinsPredictor implements Predictor {
         return result;
     }
 
-    @Override
-    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+    public BigDecimal[] predictRow(int round, int[] previousValues) {
+        if (round == 0) { return getFirstGuess(); }
         int last = previousValues[round-1];
         BigDecimal[] result = new BigDecimal[100];
         //make sure we don't have 0 probability

@@ -24,7 +24,7 @@ public class TestPositionPredictor {
         PositionPredictor positionPredictor = new PositionPredictor();
         for (int position=0; position<303; ++position) {
             BigDecimal sum = BigDecimal.ZERO;
-            for (BigDecimal prediction : positionPredictor.predictRow(position, 1, new int[position])) {
+            for (BigDecimal prediction : positionPredictor.predictRow(position, new int[position])) {
                 sum = sum.add(prediction);
             }
             assertEquals(0, sum.compareTo(BigDecimal.ONE));

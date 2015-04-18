@@ -15,7 +15,7 @@ public class PositionPredictor implements Predictor {
     private int[] countsForFifty;
 
     public PositionPredictor() throws IOException {
-        trainingData = Trainer.initializeTestDataFromFile();
+        trainingData = Trainer.initializeTestDataFromFile(Trainer.TRAINING_DATA_FILE_NAME_ROUND_TWO);
         countZeroProbabilities();
 
         countsForSixteen = getCountsForSixteen();
@@ -42,13 +42,11 @@ public class PositionPredictor implements Predictor {
         }
     }
 
-    @Override
     public BigDecimal[] getFirstGuess() {
         return predictPosition(0, new int[0]);
     }
 
-    @Override
-    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+    public BigDecimal[] predictRow(int round, int[] previousValues) {
         return predictPosition(round, previousValues);
     }
 

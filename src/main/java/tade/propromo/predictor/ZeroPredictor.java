@@ -5,13 +5,11 @@ import java.util.Arrays;
 
 public class ZeroPredictor implements Predictor {
 
-    @Override
     public BigDecimal[] getFirstGuess() {
         return alwaysPredictZero();
     }
 
-    @Override
-    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+    public BigDecimal[] predictRow(int round, int[] previousValues) {
         return alwaysPredictZero();
     }
 

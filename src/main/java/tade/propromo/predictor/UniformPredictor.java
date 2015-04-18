@@ -11,7 +11,7 @@ public class UniformPredictor implements Predictor {
         return result;
     }
 
-    public BigDecimal[] predictRow(int round, int row, int[] previousValues) {
+    public BigDecimal[] predictRow(int round, int[] previousValues) {
         BigDecimal[] result = new BigDecimal[100];
         Arrays.fill(result, new BigDecimal(1).divide(new BigDecimal(100)));
         return result;

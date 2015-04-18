@@ -15,7 +15,7 @@ public class TestDuvinsPredictor {
 
         int[] previousValues = new int[10];
         previousValues[9] = 50;
-        BigDecimal[] prediction = duvinsPredictor.predictRow(10, 1, previousValues);
+        BigDecimal[] prediction = duvinsPredictor.predictRow(10, previousValues);
 
         assertEquals(0, prediction[49].compareTo(BigDecimal.ONE.divide(new BigDecimal(4))));
         assertEquals(0, prediction[51].compareTo(BigDecimal.ONE.divide(new BigDecimal(4))));

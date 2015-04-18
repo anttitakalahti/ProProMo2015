@@ -73,7 +73,7 @@ public class Worker extends Thread {
 
             previousValues[round - 1] = getPreviousRoundValues();
             for (int row=0; row<myGuess.length; ++row) {
-                myGuess[row] = predictor.predictRow(round, row, getPreviousValues(round, row));
+                myGuess[row] = predictor.predictRow(round, getPreviousValues(round, row));
             }
 
         }

@@ -10,7 +10,7 @@ public interface Predictor {
     public static final BigDecimal MINIMAL = BigDecimal.ONE.divide(new BigDecimal(10000000));
 
     public BigDecimal[] getFirstGuess();
-    public BigDecimal[] predictRow(int round, int row, int[] previousValues);
+    public BigDecimal[] predictRow(int round, int[] previousValues);
 
     default public BigDecimal[] normalize(BigDecimal[] values) {
         BigDecimal sum = BigDecimal.ZERO;
