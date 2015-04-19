@@ -1,9 +1,6 @@
 package tade.propromo;
 
-import tade.propromo.predictor.DuvinsPredictor;
-import tade.propromo.predictor.PositionPredictor;
-import tade.propromo.predictor.UniformPredictor;
-import tade.propromo.predictor.ZeroPredictor;
+import tade.propromo.predictor.*;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -29,7 +26,7 @@ public class Trainer {
 
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
         double currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
-        double myScore = runWithWorker(new TrainingDataWorker(testData, new PositionPredictor()));
+        double myScore = runWithWorker(new TrainingDataWorker(testData, new ExtendedPositionPredictor()));
 
 
         System.out.printf("Baseline is: %.4f for each guess. Current best gives %.4f and this one got: %.4f for each guess.\n",

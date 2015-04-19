@@ -1,10 +1,7 @@
 package tade.propromo;
 
 
-import tade.propromo.predictor.PositionPredictor;
-import tade.propromo.predictor.Predictor;
-import tade.propromo.predictor.UniformPredictor;
-import tade.propromo.predictor.ZeroPredictor;
+import tade.propromo.predictor.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +26,7 @@ import java.util.Scanner;
 public class Worker extends Thread {
 
     public static final int DEFAULT_ROWS = 1000;
-    public static final Predictor MY_BEST_PREDICTOR = new PositionPredictor();
+    public static final Predictor MY_BEST_PREDICTOR = new ExtendedPositionPredictor();
 
     protected Predictor predictor;
     protected int rows;
