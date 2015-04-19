@@ -58,19 +58,8 @@ public class PositionPredictor implements Predictor {
         }
 
         zeroProbabilities = new double[COLS];
-        Arrays.fill(zeroProbabilities, 0d);
-
         for (int position=0; position<COLS; ++position) {
             zeroProbabilities[position] = (double)counts[position] / trainingData.length;
-            // System.out.printf("%d has zero probability of %.4f \n", position, zeroProbabilities[position]);
-
-            if (zeroProbabilities[position] < 50d/100) {
-
-                System.out.printf("position %d has zero probability of %.6f \n", position, zeroProbabilities[position]);
-
-            }
-
-
         }
     }
 
