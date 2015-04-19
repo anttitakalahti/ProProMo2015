@@ -10,6 +10,8 @@ import static org.junit.Assert.assertTrue;
 
 public class TestUniformPredictor {
 
+    private static final double EPSILON = 1e-5;
+
     @Test
     public void initialPredictionGivesHundredValues() {
         UniformPredictor predictor = new UniformPredictor();
@@ -24,7 +26,7 @@ public class TestUniformPredictor {
         for (double prediction : firstGuess) {
             sum += prediction;
         }
-        assertEquals("Sum is equal to one.", 1d, sum);
+        assertEquals("Sum is equal to one.", 1d, sum, EPSILON);
     }
 
 }

@@ -10,6 +10,8 @@ import static org.junit.Assert.assertEquals;
 
 public class TestZeroPredictor {
 
+    private static final double EPSILON = 1e-5;
+
     @Test
     public void initialPredictionValuesSumToOne() {
         ZeroPredictor predictor = new ZeroPredictor();
@@ -18,6 +20,6 @@ public class TestZeroPredictor {
         for (double prediction : firstGuess) {
             sum += prediction;
         }
-        assertEquals("Sum is equal to one.", 1d, sum);
+        assertEquals("Sum is equal to one.", 1d, sum, EPSILON);
     }
 }

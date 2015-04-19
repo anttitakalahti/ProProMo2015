@@ -9,6 +9,8 @@ import static junit.framework.Assert.assertEquals;
 
 public class TestPositionPredictor {
 
+    private static final double EPSILON = 1e-5;
+
     @Test
     public void testInitialPositionSumsToOne() throws IOException {
         PositionPredictor positionPredictor = new PositionPredictor();
@@ -16,7 +18,7 @@ public class TestPositionPredictor {
         for (double prediction : positionPredictor.getFirstGuess()) {
             sum += prediction;
         }
-        assertEquals(1d, sum);
+        assertEquals(1d, sum, EPSILON);
     }
 
     @Test
@@ -27,7 +29,7 @@ public class TestPositionPredictor {
             for (double prediction : positionPredictor.predictRow(position, new int[position])) {
                 sum += prediction;
             }
-            assertEquals(1d, sum);
+            assertEquals(1d, sum, EPSILON);
         }
     }
 }
