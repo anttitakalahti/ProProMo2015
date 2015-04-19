@@ -11,7 +11,7 @@ import java.util.stream.DoubleStream;
 public class TrainingDataWorker extends Worker {
 
     private int[][] testData;
-    private ArrayList<BigDecimal[][]> output;
+    private ArrayList<double[][]> output;
 
     public TrainingDataWorker(int[][] testData, Predictor predictor) throws Exception {
 
@@ -37,13 +37,13 @@ public class TrainingDataWorker extends Worker {
     }
 
     @Override
-    protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
+    protected void writePredictionsToOutputFile(double[][] myGuess) {
         output.add(myGuess);
     }
 
-    public BigDecimal calculateScore() {
-        BigDecimal[] rowScores = new BigDecimal[previousValues[0].length];
-        Arrays.fill(rowScores, BigDecimal.ZERO);
+    public double calculateScore() {
+
+        double score = 0d;
 
         for (int column=0; column<previousValues.length; ++column) {
             for (int row=0; row<previousValues[0].length; ++row) {
@@ -52,17 +52,21 @@ public class TrainingDataWorker extends Worker {
                 int correctValue = previousValues[column][row];
 
                 // myGuess = new BigDecimal[rows][100];    // hundred values per line.
-                BigDecimal predictedProbability = output.get(column)[row][correctValue];
 
-                rowScores[row] = rowScores[row].add(predictedProbability);
+                if (output == null) { System.out.println("IS SO NULL!"); }
+                if (output.get(column) == null) { System.out.println("IS NULL!"); }
+                if (output.get(column)[row] == null) { System.out.println("FOOK"); }
+
+                double predictedProbability = output.get(column)[row][correctValue];
+
+                double positionScore = Math.log(predictedProbability);
+
+                score += positionScore;
 
             }
         }
 
-        BigDecimal totalScore = BigDecimal.ZERO;
-        for (BigDecimal rowScore : rowScores) {
-            totalScore = totalScore.add(rowScore);
-        }
-        return totalScore.setScale(4, RoundingMode.HALF_UP);
+        return score;
+
     }
 }

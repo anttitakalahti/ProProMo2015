@@ -2,35 +2,37 @@ package tade.propromo.predictor;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 public interface Predictor {
 
     public static final int COLS = 303;
     public static final int SCALE = 10;
-    public static final BigDecimal MINIMAL = BigDecimal.ONE.divide(new BigDecimal(10000000));
+    public static final double MINIMAL = 0.0000001;
 
-    public BigDecimal[] getFirstGuess();
-    public BigDecimal[] predictRow(int round, int[] previousValues);
+    public double[] getFirstGuess();
+    public double[] predictRow(int round, int[] previousValues);
 
-    default public BigDecimal[] normalize(BigDecimal[] values) {
-        BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal value : values) {
-            sum = sum.add(value);
-        }
+    default public double[] normalize(double[] values) {
+        double[] normalized = new double[values.length];
 
-        BigDecimal[] normalized = new BigDecimal[values.length];
-        BigDecimal normalizedSum = BigDecimal.ZERO;
+        double sum = Arrays.stream(values).sum();
         for (int position=0; position < values.length; ++position) {
-            // FLOOR to avoid 1.0000000001 - SORRY
-            normalized[position] = values[position].divide(sum, SCALE, RoundingMode.FLOOR);
-            normalizedSum = normalizedSum.add(normalized[position]);
-        }
-
-        // Add the rest to zero (after flooring the division)
-        if (normalizedSum.compareTo(BigDecimal.ONE) < 0) {
-            normalized[0] = normalized[0].add(BigDecimal.ONE.add(normalizedSum.negate()));
+            normalized[position] = values[position] / sum;
         }
 
         return normalized;
+    }
+
+    default public double[] normalize(int[] values) {
+        double[] d = new double[values.length];
+
+        int sum = Arrays.stream(values).sum();
+
+        for (int i=0; i<values.length; ++i) {
+            d[i] = (double)values[i] / sum;
+        }
+
+        return d;
     }
 }

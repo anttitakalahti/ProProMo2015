@@ -27,7 +27,7 @@ public class EvaluateResults {
             }
         }
         for (double[] vector : score) {
-            pw.println(arrayToCSV(vector));
+            pw.println(Example.arrayToCSV(vector));
         }
         pw.close();
     }

@@ -12,22 +12,22 @@ public class TestPositionPredictor {
     @Test
     public void testInitialPositionSumsToOne() throws IOException {
         PositionPredictor positionPredictor = new PositionPredictor();
-        BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal prediction : positionPredictor.getFirstGuess()) {
-            sum = sum.add(prediction);
+        double sum = 0d;
+        for (double prediction : positionPredictor.getFirstGuess()) {
+            sum += prediction;
         }
-        assertEquals(0, sum.compareTo(BigDecimal.ONE));
+        assertEquals(1d, sum);
     }
 
     @Test
     public void testAllPositionsSumToOne() throws IOException {
         PositionPredictor positionPredictor = new PositionPredictor();
         for (int position=0; position<303; ++position) {
-            BigDecimal sum = BigDecimal.ZERO;
-            for (BigDecimal prediction : positionPredictor.predictRow(position, new int[position])) {
-                sum = sum.add(prediction);
+            double sum = 0d;
+            for (double prediction : positionPredictor.predictRow(position, new int[position])) {
+                sum += prediction;
             }
-            assertEquals(0, sum.compareTo(BigDecimal.ONE));
+            assertEquals(1d, sum);
         }
     }
 }

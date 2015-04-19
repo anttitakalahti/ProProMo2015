@@ -3,8 +3,6 @@ package tade.propromo.predictor;
 
 import org.junit.Test;
 
-import java.math.BigDecimal;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestDuvinsPredictor {
@@ -15,20 +13,17 @@ public class TestDuvinsPredictor {
 
         int[] previousValues = new int[10];
         previousValues[9] = 50;
-        BigDecimal[] prediction = duvinsPredictor.predictRow(10, previousValues);
+        double[] prediction = duvinsPredictor.predictRow(10, previousValues);
 
-        assertEquals(0, prediction[49].compareTo(BigDecimal.ONE.divide(new BigDecimal(4))));
-        assertEquals(0, prediction[51].compareTo(BigDecimal.ONE.divide(new BigDecimal(4))));
+        assertEquals(1d/4, prediction[49]);
+        assertEquals(1d/4, prediction[51]);
+        assertEquals((1d/2-97*Predictor.MINIMAL), prediction[50]);
 
-        BigDecimal target = BigDecimal.ONE.divide(new BigDecimal(2));
-        target = target.add(Predictor.MINIMAL.multiply(new BigDecimal(97)).negate());
-        assertEquals(0, prediction[50].compareTo(target));
-
-        BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal p : prediction) {
-            sum = sum.add(p);
+        double sum = 0d;
+        for (double d : prediction) {
+            sum += d;
         }
-        assertEquals(0, sum.compareTo(BigDecimal.ONE));
+        assertEquals(1d, sum);
     }
 
 }

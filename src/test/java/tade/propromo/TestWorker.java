@@ -26,7 +26,7 @@ public class TestWorker {
 
     private class DummyWorker extends Worker {
 
-        private ArrayList<BigDecimal[][]> output = new ArrayList<>();
+        private ArrayList<double[][]> output = new ArrayList<>();
 
         @Override
         protected int[] getPreviousRoundValues() {
@@ -36,11 +36,11 @@ public class TestWorker {
         }
 
         @Override
-        protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
+        protected void writePredictionsToOutputFile(double[][] myGuess) {
             output.add(myGuess);
         }
 
-        public ArrayList<BigDecimal[][]> getOutput() { return output; }
+        public ArrayList<double[][]> getOutput() { return output; }
     }
 
 }

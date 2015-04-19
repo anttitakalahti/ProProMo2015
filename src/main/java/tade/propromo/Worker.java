@@ -61,7 +61,7 @@ public class Worker extends Thread {
     @Override
     public void run() {
 
-        BigDecimal[][] myGuess = new BigDecimal[rows][100];    // hundred values per line.
+        double[][] myGuess = new double[rows][];    // hundred values per line.
 
         if (round == 0) {
 
@@ -91,12 +91,12 @@ public class Worker extends Thread {
         return values;
     }
 
-    protected void writePredictionsToOutputFile(BigDecimal[][] myGuess) {
+    protected void writePredictionsToOutputFile(double[][] myGuess) {
         PrintWriter pw = null;
 
         try {
             pw = getPrintWriter();
-            for (BigDecimal[] vector : myGuess) {
+            for (double[] vector : myGuess) {
                 if (Thread.currentThread().isInterrupted()) {
                     throw new InterruptedException();
                 }
@@ -115,7 +115,7 @@ public class Worker extends Thread {
     private PrintWriter getPrintWriter() throws FileNotFoundException {
         File outputDir = new File(currentWork + "/output");
         if (!outputDir.exists()) {
-            outputDir.mkdir();
+            outputDir.mkdirs();
         }
         File outputFile = new File(outputDir, "output.csv");
         return new PrintWriter(outputFile);
@@ -125,12 +125,13 @@ public class Worker extends Thread {
         interrupt();
     }
 
-    public static String arrayToCSV(BigDecimal[] a) {
+    public static String arrayToCSV(double[] a) {
         StringBuilder sb = new StringBuilder();
-        for (BigDecimal d : a) {
-            sb.append(d.toPlainString() + ",");
+        for (double d : a) {
+            sb.append(String.format("%f,", d));
         }
         sb.deleteCharAt(sb.length() - 1);
+        System.out.println(sb.toString());
         return sb.toString();
     }
 

@@ -22,28 +22,21 @@ public class Trainer {
     public static final int TRAINING_DATA_ROWS_ROUND_ONE = 67785;
     public static final int TRAINING_DATA_ROWS_ROUND_TWO = 68760;
 
-    private static final int REPORTING_SCALE = 6;
-
     public static void main(String[] args) throws Exception {
 
 
-        int[][] testData = initializeTestDataFromFile(TRAINING_DATA_FILE_NAME_ROUND_TWO, 2000);
+        int[][] testData = initializeTestDataFromFile(TRAINING_DATA_FILE_NAME_ROUND_TWO, 1000);
 
-        BigDecimal baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
-        BigDecimal currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
-        BigDecimal myScore = runWithWorker(new TrainingDataWorker(testData, new PositionPredictor()));
+        double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
+        double currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
+        double myScore = runWithWorker(new TrainingDataWorker(testData, new PositionPredictor()));
 
 
-        System.out.printf("Baseline is: %s for each guess. Current best gives %s and this one got: %s for each guess.\n",
-                baseline.divide(new BigDecimal(testData.length), RoundingMode.HALF_UP)
-                        .divide(new BigDecimal(303), REPORTING_SCALE, RoundingMode.HALF_UP),
-                currentBestPredictor.divide(new BigDecimal(testData.length), RoundingMode.HALF_UP)
-                        .divide(new BigDecimal(303), REPORTING_SCALE, RoundingMode.HALF_UP),
-                myScore.divide(new BigDecimal(testData.length), RoundingMode.HALF_UP)
-                        .divide(new BigDecimal(303), REPORTING_SCALE, RoundingMode.HALF_UP));
+        System.out.printf("Baseline is: %.4f for each guess. Current best gives %.4f and this one got: %.4f for each guess.\n",
+                          baseline, currentBestPredictor, myScore);
     }
 
-    private static BigDecimal runWithWorker(TrainingDataWorker worker) throws Exception {
+    private static double runWithWorker(TrainingDataWorker worker) throws Exception {
         for (int round=0; round<303; ++round) {
             worker.run();
         }

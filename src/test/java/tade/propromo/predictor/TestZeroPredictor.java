@@ -13,11 +13,11 @@ public class TestZeroPredictor {
     @Test
     public void initialPredictionValuesSumToOne() {
         ZeroPredictor predictor = new ZeroPredictor();
-        BigDecimal[] firstGuess = predictor.getFirstGuess();
-        BigDecimal sum = BigDecimal.ZERO;
-        for (BigDecimal prediction : firstGuess) {
-            sum = sum.add(prediction);
+        double[] firstGuess = predictor.getFirstGuess();
+        double sum = 0d;
+        for (double prediction : firstGuess) {
+            sum += prediction;
         }
-        assertEquals("Sum is equal to one.", 0, BigDecimal.ONE.compareTo(sum));
+        assertEquals("Sum is equal to one.", 1d, sum);
     }
 }

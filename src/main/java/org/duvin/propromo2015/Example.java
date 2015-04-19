@@ -74,7 +74,7 @@ public class Example {
         return sb.toString();
     }
 
-    private static double[] getRandomDist() {
+    public static double[] getRandomDist() {
         Random r = new Random();
         double[] result = new double[100];
         double sum = 0;
@@ -99,7 +99,7 @@ public class Example {
         return result;
     }
 
-    private static double[] basedOnLastValue(int last) {
+    public static double[] basedOnLastValue(int last) {
         double minimal = 0.0000001;
         double[] result = new double[100];
         //make sure we don't have 0 probability
