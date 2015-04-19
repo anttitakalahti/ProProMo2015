@@ -23,19 +23,26 @@ public class PositionPredictor implements Predictor {
     private double[][] preCalculatedProbabilities;
 
 
-    public PositionPredictor() throws IOException {
-        trainingData = Trainer.initializeTestDataFromFile(Trainer.TRAINING_DATA_FILE_NAME_ROUND_TWO);
-        countZeroProbabilities();
+    public PositionPredictor() {
+        try {
+
+            trainingData = Trainer.initializeTestDataFromFile(Trainer.TRAINING_DATA_FILE_NAME_ROUND_TWO);
+            countZeroProbabilities();
 
 
-        interesting_positions = new HashSet<>();
-        for (int i : new int[]{16, 50, 126, 184, 237, 244, 248, 270, 279, 291}) {
-            interesting_positions.add(i);
-        }
+            interesting_positions = new HashSet<>();
+            for (int i : new int[]{16, 50, 126, 184, 237, 244, 248, 270, 279, 291}) {
+                interesting_positions.add(i);
+            }
 
-        preCalculatedProbabilities = new double[303][];
-        for (Integer position : interesting_positions) {
-            preCalculatedProbabilities[position] = getValueProbabilitiesForPosition(position);
+            preCalculatedProbabilities = new double[303][];
+            for (Integer position : interesting_positions) {
+                preCalculatedProbabilities[position] = getValueProbabilitiesForPosition(position);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+            System.exit(-1);
         }
     }
 

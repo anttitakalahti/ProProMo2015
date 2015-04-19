@@ -1,6 +1,7 @@
 package tade.propromo;
 
 
+import tade.propromo.predictor.PositionPredictor;
 import tade.propromo.predictor.Predictor;
 import tade.propromo.predictor.UniformPredictor;
 import tade.propromo.predictor.ZeroPredictor;
@@ -28,7 +29,7 @@ import java.util.Scanner;
 public class Worker extends Thread {
 
     public static final int DEFAULT_ROWS = 1000;
-    public static final Predictor MY_BEST_PREDICTOR = new ZeroPredictor();
+    public static final Predictor MY_BEST_PREDICTOR = new PositionPredictor();
 
     protected Predictor predictor;
     protected int rows;
@@ -128,7 +129,7 @@ public class Worker extends Thread {
     public static String arrayToCSV(double[] a) {
         StringBuilder sb = new StringBuilder();
         for (double d : a) {
-            sb.append(String.format("%f,", d));
+            sb.append(String.format("%.10f,", d));
         }
         sb.deleteCharAt(sb.length() - 1);
         System.out.println(sb.toString());
