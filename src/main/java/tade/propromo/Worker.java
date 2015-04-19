@@ -132,7 +132,6 @@ public class Worker extends Thread {
             sb.append(String.format("%.10f,", d));
         }
         sb.deleteCharAt(sb.length() - 1);
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
