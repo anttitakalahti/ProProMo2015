@@ -2,11 +2,8 @@ package tade.propromo;
 
 import tade.propromo.predictor.Predictor;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.DoubleStream;
 
 public class TrainingDataWorker extends Worker {
 
@@ -27,13 +24,17 @@ public class TrainingDataWorker extends Worker {
         System.out.println("  Predictor: " + predictor.getClass() + " with " + rows + " rows.");
     }
 
+    private int[] getActualValues(int round) {
+        int[] values = new int[testData.length];
+        for (int row=0; row<values.length; ++row) {
+            values[row] = testData[row][round];
+        }
+        return values;
+    }
+
     @Override
     protected int[] getPreviousRoundValues() {
-        int[] previousRoundValues = new int[testData.length];
-        for (int row=0; row<previousRoundValues.length; ++row) {
-            previousRoundValues[row] = testData[row][getRound() - 1];
-        }
-        return previousRoundValues;
+        return getActualValues(getRound() - 1);
     }
 
     @Override
@@ -42,31 +43,25 @@ public class TrainingDataWorker extends Worker {
     }
 
     public double calculateScore() {
+        double[][] score = new double[rows][303];
 
-        double score = 0d;
+        for (int round = 0; round < 303; round++) {
 
-        for (int column=0; column<previousValues.length; ++column) {
-            for (int row=0; row<previousValues[0].length; ++row) {
+            double[][] predictions = output.get(round);
+            int[] values = getActualValues(round);
 
-                // previousValues = new int[303][rows];
-                int correctValue = previousValues[column][row];
-
-                // myGuess = new BigDecimal[rows][100];    // hundred values per line.
-
-                if (output == null) { System.out.println("IS SO NULL!"); }
-                if (output.get(column) == null) { System.out.println("IS NULL!"); }
-                if (output.get(column)[row] == null) { System.out.println("FOOK"); }
-
-                double predictedProbability = output.get(column)[row][correctValue];
-
-                double positionScore = Math.log(predictedProbability);
-
-                score += positionScore;
-
+            for (int vector = 0; vector < rows; vector++) {
+                score[vector][round] = Math.log(predictions[vector][values[vector]]);
             }
+
         }
 
-        return score;
+        double[] rowScores = new double[rows];
 
+        for (int i=0; i<rows; ++i) {
+            rowScores[i] = Arrays.stream(score[i]).sum();
+        }
+
+        return Arrays.stream(rowScores).sum();
     }
 }
