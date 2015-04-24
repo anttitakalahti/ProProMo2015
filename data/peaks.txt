@@ -1,0 +1,273 @@
+Max - Min differences
+Round 1:
+ 14759 Peaks with max(value) - min(value) == 0
+ 35176 Peaks with max(value) - min(value) == 1
+ 30144 Peaks with max(value) - min(value) == 2
+ 16778 Peaks with max(value) - min(value) == 3
+  9723 Peaks with max(value) - min(value) == 4
+  8347 Peaks with max(value) - min(value) == 5
+  8825 Peaks with max(value) - min(value) == 6
+  6281 Peaks with max(value) - min(value) == 7
+  4954 Peaks with max(value) - min(value) == 8
+  5033 Peaks with max(value) - min(value) == 9
+  3560 Peaks with max(value) - min(value) == 10
+  2603 Peaks with max(value) - min(value) == 11
+  2322 Peaks with max(value) - min(value) == 12
+  1312 Peaks with max(value) - min(value) == 13
+   820 Peaks with max(value) - min(value) == 14
+   656 Peaks with max(value) - min(value) == 15
+   483 Peaks with max(value) - min(value) == 16
+   403 Peaks with max(value) - min(value) == 17
+   323 Peaks with max(value) - min(value) == 18
+   238 Peaks with max(value) - min(value) == 19
+   149 Peaks with max(value) - min(value) == 20
+    96 Peaks with max(value) - min(value) == 21
+    40 Peaks with max(value) - min(value) == 22
+    36 Peaks with max(value) - min(value) == 23
+    36 Peaks with max(value) - min(value) == 24
+    35 Peaks with max(value) - min(value) == 25
+    33 Peaks with max(value) - min(value) == 26
+    32 Peaks with max(value) - min(value) == 27
+    30 Peaks with max(value) - min(value) == 28
+    12 Peaks with max(value) - min(value) == 29
+    15 Peaks with max(value) - min(value) == 30
+     6 Peaks with max(value) - min(value) == 31
+     1 Peaks with max(value) - min(value) == 32
+Round 2:
+ 15610 Peaks with max(value) - min(value) == 0
+ 38336 Peaks with max(value) - min(value) == 1
+ 31568 Peaks with max(value) - min(value) == 2
+ 16978 Peaks with max(value) - min(value) == 3
+  8970 Peaks with max(value) - min(value) == 4
+  7649 Peaks with max(value) - min(value) == 5
+  8436 Peaks with max(value) - min(value) == 6
+  5535 Peaks with max(value) - min(value) == 7
+  4536 Peaks with max(value) - min(value) == 8
+  4732 Peaks with max(value) - min(value) == 9
+  3602 Peaks with max(value) - min(value) == 10
+  2373 Peaks with max(value) - min(value) == 11
+  2130 Peaks with max(value) - min(value) == 12
+  1275 Peaks with max(value) - min(value) == 13
+   808 Peaks with max(value) - min(value) == 14
+   650 Peaks with max(value) - min(value) == 15
+   409 Peaks with max(value) - min(value) == 16
+   349 Peaks with max(value) - min(value) == 17
+   247 Peaks with max(value) - min(value) == 18
+   169 Peaks with max(value) - min(value) == 19
+   136 Peaks with max(value) - min(value) == 20
+    66 Peaks with max(value) - min(value) == 21
+    39 Peaks with max(value) - min(value) == 22
+    27 Peaks with max(value) - min(value) == 23
+    25 Peaks with max(value) - min(value) == 24
+    14 Peaks with max(value) - min(value) == 25
+    18 Peaks with max(value) - min(value) == 26
+    18 Peaks with max(value) - min(value) == 27
+    15 Peaks with max(value) - min(value) == 28
+    16 Peaks with max(value) - min(value) == 29
+     3 Peaks with max(value) - min(value) == 30
+     3 Peaks with max(value) - min(value) == 31
+     3 Peaks with max(value) - min(value) == 32
+     1 Peaks with max(value) - min(value) == 34
+
+Item counts
+Round 1:
+  6092 Peaks with itemCount == 1
+  2418 Peaks with itemCount == 2
+  2493 Peaks with itemCount == 3
+  5014 Peaks with itemCount == 4
+ 79685 Peaks with itemCount == 5
+  4533 Peaks with itemCount == 6
+  3106 Peaks with itemCount == 7
+  3130 Peaks with itemCount == 8
+  3699 Peaks with itemCount == 9
+  8369 Peaks with itemCount == 10
+  3884 Peaks with itemCount == 11
+  3110 Peaks with itemCount == 12
+  2761 Peaks with itemCount == 13
+  2987 Peaks with itemCount == 14
+  3086 Peaks with itemCount == 15
+  2056 Peaks with itemCount == 16
+  1939 Peaks with itemCount == 17
+  1687 Peaks with itemCount == 18
+  1621 Peaks with itemCount == 19
+  1383 Peaks with itemCount == 20
+  1308 Peaks with itemCount == 21
+  1157 Peaks with itemCount == 22
+  1059 Peaks with itemCount == 23
+   948 Peaks with itemCount == 24
+   955 Peaks with itemCount == 25
+   807 Peaks with itemCount == 26
+   704 Peaks with itemCount == 27
+   662 Peaks with itemCount == 28
+   522 Peaks with itemCount == 29
+   406 Peaks with itemCount == 30
+   343 Peaks with itemCount == 31
+   344 Peaks with itemCount == 32
+   256 Peaks with itemCount == 33
+   205 Peaks with itemCount == 34
+   148 Peaks with itemCount == 35
+   106 Peaks with itemCount == 36
+    93 Peaks with itemCount == 37
+   102 Peaks with itemCount == 38
+    73 Peaks with itemCount == 39
+    10 Peaks with itemCount == 40
+Round 2:
+  6478 Peaks with itemCount == 1
+  2925 Peaks with itemCount == 2
+  2924 Peaks with itemCount == 3
+  5456 Peaks with itemCount == 4
+ 83706 Peaks with itemCount == 5
+  4552 Peaks with itemCount == 6
+  3371 Peaks with itemCount == 7
+  3222 Peaks with itemCount == 8
+  3794 Peaks with itemCount == 9
+  7354 Peaks with itemCount == 10
+  3269 Peaks with itemCount == 11
+  2925 Peaks with itemCount == 12
+  2881 Peaks with itemCount == 13
+  2965 Peaks with itemCount == 14
+  2769 Peaks with itemCount == 15
+  1914 Peaks with itemCount == 16
+  1609 Peaks with itemCount == 17
+  1453 Peaks with itemCount == 18
+  1247 Peaks with itemCount == 19
+  1106 Peaks with itemCount == 20
+   961 Peaks with itemCount == 21
+   923 Peaks with itemCount == 22
+   869 Peaks with itemCount == 23
+   862 Peaks with itemCount == 24
+   772 Peaks with itemCount == 25
+   660 Peaks with itemCount == 26
+   683 Peaks with itemCount == 27
+   553 Peaks with itemCount == 28
+   451 Peaks with itemCount == 29
+   386 Peaks with itemCount == 30
+   291 Peaks with itemCount == 31
+   242 Peaks with itemCount == 32
+   253 Peaks with itemCount == 33
+   266 Peaks with itemCount == 34
+   177 Peaks with itemCount == 35
+   136 Peaks with itemCount == 36
+   104 Peaks with itemCount == 37
+   133 Peaks with itemCount == 38
+    91 Peaks with itemCount == 39
+    13 Peaks with itemCount == 40
+
+Average values
+Round 1:
+     2 Peaks with meanValue == 21
+     1 Peaks with meanValue == 25
+     1 Peaks with meanValue == 28
+     1 Peaks with meanValue == 30
+     3 Peaks with meanValue == 31
+    13 Peaks with meanValue == 32
+    30 Peaks with meanValue == 33
+    77 Peaks with meanValue == 34
+    89 Peaks with meanValue == 35
+   449 Peaks with meanValue == 36
+  2794 Peaks with meanValue == 37
+  2833 Peaks with meanValue == 38
+  2673 Peaks with meanValue == 39
+  3897 Peaks with meanValue == 40
+  3787 Peaks with meanValue == 41
+  4041 Peaks with meanValue == 42
+  3539 Peaks with meanValue == 43
+  3549 Peaks with meanValue == 44
+  4063 Peaks with meanValue == 45
+  4329 Peaks with meanValue == 46
+  4309 Peaks with meanValue == 47
+  4082 Peaks with meanValue == 48
+  3809 Peaks with meanValue == 49
+  3508 Peaks with meanValue == 50
+  3233 Peaks with meanValue == 51
+  2641 Peaks with meanValue == 52
+  2373 Peaks with meanValue == 53
+  2368 Peaks with meanValue == 54
+  2168 Peaks with meanValue == 55
+  1274 Peaks with meanValue == 56
+  1194 Peaks with meanValue == 57
+  1011 Peaks with meanValue == 58
+  1344 Peaks with meanValue == 59
+  1765 Peaks with meanValue == 60
+  1655 Peaks with meanValue == 61
+  2561 Peaks with meanValue == 62
+  3363 Peaks with meanValue == 63
+  3150 Peaks with meanValue == 64
+  4813 Peaks with meanValue == 65
+  4683 Peaks with meanValue == 66
+  3930 Peaks with meanValue == 67
+  5426 Peaks with meanValue == 68
+  7337 Peaks with meanValue == 69
+  6344 Peaks with meanValue == 70
+  6658 Peaks with meanValue == 71
+  6815 Peaks with meanValue == 72
+  6517 Peaks with meanValue == 73
+  5665 Peaks with meanValue == 74
+  4960 Peaks with meanValue == 75
+  3543 Peaks with meanValue == 76
+  1879 Peaks with meanValue == 77
+  1207 Peaks with meanValue == 78
+   542 Peaks with meanValue == 79
+   293 Peaks with meanValue == 80
+   411 Peaks with meanValue == 81
+   201 Peaks with meanValue == 82
+    48 Peaks with meanValue == 83
+     8 Peaks with meanValue == 84
+     2 Peaks with meanValue == 85
+Round 2:
+     2 Peaks with meanValue == 27
+     1 Peaks with meanValue == 28
+     1 Peaks with meanValue == 31
+     4 Peaks with meanValue == 32
+     2 Peaks with meanValue == 33
+     9 Peaks with meanValue == 34
+    24 Peaks with meanValue == 35
+   331 Peaks with meanValue == 36
+  1850 Peaks with meanValue == 37
+  2307 Peaks with meanValue == 38
+  2766 Peaks with meanValue == 39
+  4694 Peaks with meanValue == 40
+  3789 Peaks with meanValue == 41
+  5376 Peaks with meanValue == 42
+  5421 Peaks with meanValue == 43
+  4848 Peaks with meanValue == 44
+  4580 Peaks with meanValue == 45
+  4070 Peaks with meanValue == 46
+  3577 Peaks with meanValue == 47
+  3678 Peaks with meanValue == 48
+  3826 Peaks with meanValue == 49
+  2654 Peaks with meanValue == 50
+  2874 Peaks with meanValue == 51
+  2384 Peaks with meanValue == 52
+  1672 Peaks with meanValue == 53
+  2020 Peaks with meanValue == 54
+  1917 Peaks with meanValue == 55
+  1225 Peaks with meanValue == 56
+  1097 Peaks with meanValue == 57
+  1043 Peaks with meanValue == 58
+  1307 Peaks with meanValue == 59
+  1712 Peaks with meanValue == 60
+  2227 Peaks with meanValue == 61
+  2362 Peaks with meanValue == 62
+  2632 Peaks with meanValue == 63
+  3367 Peaks with meanValue == 64
+  5371 Peaks with meanValue == 65
+  6123 Peaks with meanValue == 66
+  5177 Peaks with meanValue == 67
+  5678 Peaks with meanValue == 68
+  6830 Peaks with meanValue == 69
+  5647 Peaks with meanValue == 70
+  6427 Peaks with meanValue == 71
+  5883 Peaks with meanValue == 72
+  5484 Peaks with meanValue == 73
+  4777 Peaks with meanValue == 74
+  4809 Peaks with meanValue == 75
+  4443 Peaks with meanValue == 76
+  2633 Peaks with meanValue == 77
+  1919 Peaks with meanValue == 78
+   744 Peaks with meanValue == 79
+   287 Peaks with meanValue == 80
+   452 Peaks with meanValue == 81
+   373 Peaks with meanValue == 82
+    38 Peaks with meanValue == 83
+     2 Peaks with meanValue == 84
