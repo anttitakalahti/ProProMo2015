@@ -42,6 +42,17 @@
                     <include>line_numbers_for_round_1.txt</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>src/main/resources/statistics/</directory>
+                <includes>
+                    <include>col_means_round_1.txt</include>
+                    <include>col_means_round_2.txt</include>
+                    <include>col_variances_round_1.txt</include>
+                    <include>col_variances_round_2.txt</include>
+                    <include>col_zero_probabilities_round_1.txt</include>
+                    <include>col_zero_probabilities_round_2.txt</include>
+                </includes>
+            </resource>
         </resources>
     </build>
 </project>

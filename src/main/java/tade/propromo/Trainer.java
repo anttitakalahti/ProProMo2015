@@ -25,12 +25,13 @@ public class Trainer {
         int[][] testData = initializeTestDataFromFile(TRAINING_DATA_FILE_NAME_ROUND_TWO, 1000);
 
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
-        double currentBestPredictor = runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
-        double myScore = runWithWorker(new TrainingDataWorker(testData, new ExtendedPositionPredictor()));
+        double currentBestPredictor = 666d; // runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
+        double roundTwoPredictor = 666d; // runWithWorker(new TrainingDataWorker(testData, new RoundTwoPredictor()));
+        double myScore = runWithWorker(new TrainingDataWorker(testData, new ThirdRoundPredictor()));
 
 
-        System.out.printf("Baseline is: %.4f for each guess. Current best gives %.4f and this one got: %.4f for each guess.\n",
-                          baseline, currentBestPredictor, myScore);
+        System.out.printf("Baseline is: %.4f for each guess. Current best gives %.4f and round two predictor got %.4f and this one got: %.4f for each guess.\n",
+                          baseline, currentBestPredictor, roundTwoPredictor, myScore);
     }
 
     private static double runWithWorker(TrainingDataWorker worker) throws Exception {
