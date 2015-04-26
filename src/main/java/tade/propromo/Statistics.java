@@ -47,6 +47,11 @@ public class Statistics {
         return colVariances.get(round);
     }
 
+    /**
+     * Be aware of this returning 1d
+     * @param position
+     * @return
+     */
     public double getAverageZeroProbabilityForPosition(int position) {
         return IntStream.rangeClosed(1,ROUNDS).mapToDouble(round -> getColZeroProbabilities(round)[position]).average().getAsDouble();
     }
@@ -117,7 +122,7 @@ public class Statistics {
 
             roundMeans[index] = Arrays.stream(nonZeroValues).average().getAsDouble();
             roundVariances[index] = calculateVariance(nonZeroValues, roundMeans[index]);
-            peaksPerRow[peaks(row)]++;
+            peaksPerRow[Peak.peaksPerRow(row).size()]++;
 
             index++;
         }
@@ -138,19 +143,6 @@ public class Statistics {
                 .flatMapToInt(x -> IntStream.of(x[position]))
                 .filter(x -> x > 0)
                 .toArray();
-    }
-
-    public static int peaks(int[] row) {
-        int[] nonZeroRowValues = Arrays.stream(row).filter(i -> i > 0).sorted().toArray();
-        if (nonZeroRowValues.length == 0) { return 0; }
-
-        int peaks = 0;
-        int prevValue = -10;
-        for (int value : nonZeroRowValues) {
-            if (value > prevValue + 5) { ++peaks; }
-            prevValue = value;
-        }
-        return peaks;
     }
 
     /**

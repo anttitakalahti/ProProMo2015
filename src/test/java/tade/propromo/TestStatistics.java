@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TestStatistics {
 
-    private static final double EPSILON = 1e-5;
+    public static final double EPSILON = 1e-5;
 
     int[][] data;
 
@@ -45,11 +45,4 @@ public class TestStatistics {
         assertEquals(2, nonZeroValues[2]);
     }
 
-    @Test
-    public void testPeaks() {
-        assertEquals(0, Statistics.peaks(new int[] {0, 0, 0, 0}));
-        assertEquals(1, Statistics.peaks(new int[] {0, 10, 0, 10}));
-        assertEquals(2, Statistics.peaks(new int[] {0, 10, 0, 50}));
-        assertEquals(1, Statistics.peaks(new int[] {10, 11, 9, 12}));
-    }
 }

@@ -26,7 +26,7 @@ import java.util.Scanner;
 public class Worker extends Thread {
 
     public static final int DEFAULT_ROWS = 1000;
-    public static final Predictor MY_BEST_PREDICTOR = new ExtendedPositionPredictor();
+    public static final Predictor MY_BEST_PREDICTOR = new ThirdRoundPredictor();
 
     protected Predictor predictor;
     protected int rows;
