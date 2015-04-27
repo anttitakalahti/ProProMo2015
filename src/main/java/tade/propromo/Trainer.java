@@ -24,16 +24,15 @@ public class Trainer {
     public static void main(String[] args) throws Exception {
 
 
-        int[][] testData = initializeTestDataFromFile(TRAINING_DATA_FILE_NAME_ROUND_TWO, 1000);
+        int[][] testData = initializeTestDataFromFile(TRAINING_DATA_FILE_NAME_ROUND_THREE, 1000);
 
         double baseline = runWithWorker(new TrainingDataWorker(testData, new DuvinsPredictor()));
-        double currentBestPredictor = 666d; // runWithWorker(new TrainingDataWorker(testData, Worker.MY_BEST_PREDICTOR));
-        double roundTwoPredictor = 666d; // runWithWorker(new TrainingDataWorker(testData, new RoundTwoPredictor()));
+        double roundTwoPredictor = runWithWorker(new TrainingDataWorker(testData, new RoundTwoPredictor()));
         double myScore = runWithWorker(new TrainingDataWorker(testData, new ThirdRoundPredictor()));
 
 
-        System.out.printf("Baseline is: %.4f for each guess. Current best gives %.4f and round two predictor got %.4f and this one got: %.4f for each guess.\n",
-                          baseline, currentBestPredictor, roundTwoPredictor, myScore);
+        System.out.printf("Baseline is: %.4f for each guess. RoundTwoPredictor got %.4f and ThirdRoundPredictor got: %.4f for each guess.\n",
+                          baseline, roundTwoPredictor, myScore);
     }
 
     private static double runWithWorker(TrainingDataWorker worker) throws Exception {
@@ -47,9 +46,13 @@ public class Trainer {
         int rows = TRAINING_DATA_ROWS_ROUND_ONE;
 
         if (fileName.equals(TRAINING_DATA_FILE_NAME_ROUND_TWO)) {
+
             rows = TRAINING_DATA_ROWS_ROUND_TWO;
+
         } else if (fileName.equals(TRAINING_DATA_FILE_NAME_ROUND_THREE)) {
+
             rows = TRAINING_DATA_ROWS_ROUND_THREE;
+
         }
         return initializeTestDataFromFile(fileName, rows);
     }

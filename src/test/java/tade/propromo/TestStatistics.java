@@ -3,6 +3,8 @@ package tade.propromo;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestStatistics {
@@ -10,6 +12,7 @@ public class TestStatistics {
     public static final double EPSILON = 1e-5;
 
     int[][] data;
+    Statistics statistics;
 
     @Before
     public void initialize() {
@@ -17,6 +20,7 @@ public class TestStatistics {
         data[0] = new int[]{0, 2, 1, 0};
         data[1] = new int[]{3, 2, 0, 1};
         data[2] = new int[]{1, 2, 3, 4};
+        statistics = new Statistics();
     }
 
     @Test
@@ -45,4 +49,12 @@ public class TestStatistics {
         assertEquals(2, nonZeroValues[2]);
     }
 
+    @Test
+    public void testPreCalculatedValuesSumToOne() {
+        for (int round = 1; round <= 3; ++round) {
+            for (int position = 0; position < Statistics.COLS; ++position) {
+                assertEquals(1d, Arrays.stream(statistics.getPreviousProbabilities(round, position)).sum(), EPSILON);
+            }
+        }
+    }
 }

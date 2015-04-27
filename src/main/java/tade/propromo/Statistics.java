@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,73 +16,114 @@ public class Statistics {
 
     public static final int ROUNDS = 3;
     public static final int COLS = 303;
+
+    public static final int PRE_CALCULATED_PROBABILITIES_PADDING = 10;
+
     public static final String CHARSET_NAME = "UTF-8";
-    public static final String STATISTICS_RESOURCES_FOLDER = "statistics";
     public static final String FILE_NAME_COL_MEANS = "col_means_round_";
     public static final String FILE_NAME_COL_VARIANCES = "col_variances_round_";
     public static final String FILE_NAME_COL_ZERO_PROBABILITIES = "col_zero_probabilities_round_";
     public static final String FILE_NAME_PREDICTOR_MATRIX = "predictor_matrix_";
+    public static final String FILE_NAME_PRE_CALCULATED_VALUE_PROBABILITIES = "pre_calculated_probabilities_";
 
-    private ArrayList<double[]> colVariances;
+    private ArrayList<double[][]> previousProbabilities;
     private ArrayList<double[]> colZeroProbabilities;
     private ArrayList<double[][]> valuePredictors;
 
     public Statistics() {
-        colVariances = new ArrayList<>();
+        previousProbabilities = new ArrayList<>();
         colZeroProbabilities = new ArrayList<>();
         valuePredictors = new ArrayList<>();
 
         IntStream.rangeClosed(0, ROUNDS)
                 .forEach(i -> {
-                    colVariances.add(null);
+                    previousProbabilities.add(null);
                     colZeroProbabilities.add(null);
                     valuePredictors.add(null);
                 });
     }
-
-    public double getAverateVarianceForPosition(int position) {
-        return IntStream.rangeClosed(1,ROUNDS).mapToDouble(round -> getColVariances(round)[position]).average().getAsDouble();
-    }
-
-    public double[] getColVariances(int round) {
-        if (colVariances.get(round) != null) { return colVariances.get(round); }
-        colVariances.set(round, readDoublesFromFile(FILE_NAME_COL_VARIANCES, round, COLS));
-        return colVariances.get(round);
-    }
-
-
 
     /**
      * Be aware of this returning 1d
      * @param position
      * @return
      */
-    public double getAverageZeroProbabilityForPosition(int position) {
-        return IntStream.rangeClosed(1,ROUNDS).mapToDouble(round -> getColZeroProbabilities(round)[position]).average().getAsDouble();
+    public double getAverageZeroProbabilityForPosition(final int position) {
+        return IntStream.rangeClosed(1,ROUNDS)
+                .mapToDouble(round -> getColZeroProbabilities(round)[position])
+                .average()
+                .getAsDouble();
     }
 
     private double[] getColZeroProbabilities(int round) {
         if (colZeroProbabilities.get(round) != null ) { return colZeroProbabilities.get(round); }
-        colZeroProbabilities.set(round, readDoublesFromFile(FILE_NAME_COL_ZERO_PROBABILITIES, round, COLS));
+
+        colZeroProbabilities.set(round, readDoublesFromFile(FILE_NAME_COL_ZERO_PROBABILITIES, round));
+
         return colZeroProbabilities.get(round);
     }
 
-    private double[] readDoublesFromFile(String filePrefix, int round, int count) {
+    public double getAveragedPrediction(final int seenPosition, final int unseenPosition) {
+        return IntStream.rangeClosed(1, ROUNDS)
+                .mapToDouble(round -> getPrediction(round, seenPosition, unseenPosition))
+                .average()
+                .getAsDouble();
+    }
+
+    private double getPrediction(int round, int seenPosition, int unseenPosition) {
+        if (valuePredictors.get(round) != null) { return valuePredictors.get(round)[seenPosition][unseenPosition]; }
+
+        valuePredictors.set(round, readMatrixFromFile(FILE_NAME_PREDICTOR_MATRIX, round));
+
+        return valuePredictors.get(round)[seenPosition][unseenPosition];
+    }
+
+    public double[] getPreviousProbabilities(int round, int position) {
+        if (previousProbabilities.get(round) != null) { return previousProbabilities.get(round)[position]; }
+
+        previousProbabilities.set(round, readMatrixFromFile(FILE_NAME_PRE_CALCULATED_VALUE_PROBABILITIES, round));
+
+        return previousProbabilities.get(round)[position];
+    }
+
+    private double[] readDoublesFromFile(String filePrefix, int round) {
         try {
 
             List<String> lines = Files.readAllLines(Paths.get(uriForPrefixAndRound(filePrefix, round)), Charset.forName(CHARSET_NAME));
             return doublesFromStrings(lines);
 
         } catch (IOException e) {
+            System.out.println("FAILED TO READ FILE: " + filePrefix + round + ".txt");
             e.printStackTrace();
             System.exit(2);
         }
 
-        return null;
+        throw new RuntimeException("System.exit() failed.");
+    }
+
+    private double[][] readMatrixFromFile(String filePrefix, int round) {
+        try {
+
+            List<String> lines = Files.readAllLines(Paths.get(uriForPrefixAndRound(filePrefix, round)));
+            double[][] matrix = new double[lines.size()][];
+            int index = 0;
+            for (String line : lines) {
+                matrix[index++] = doubleArrayFromString(line);
+            }
+            return matrix;
+
+        } catch (IOException e) {
+            System.out.println("FAILED TO READ FILE: " + filePrefix + round + ".txt");
+            e.printStackTrace();
+            System.exit(2);
+        }
+
+        throw new RuntimeException("System.exit() failed.");
     }
 
     public void writeStats(int round, int[][] data) {
         writeColData(round, data);
+        writeRowData(round, data);
         writePredictorMatrix(round, data);
     }
 
@@ -93,7 +133,7 @@ public class Statistics {
         double[] colZeroProbabilities = new double[COLS];
 
         for (int position=0; position<COLS; ++position) {
-            int[] nonZeroValues = getNonZeroPositionValues(position, data);
+          int[] nonZeroValues = getNonZeroPositionValues(position, data);
 
             if (nonZeroValues.length == 0) {
                 colMeans[position] = 0d;
@@ -111,6 +151,39 @@ public class Statistics {
         writeArrayToFile(FILE_NAME_COL_VARIANCES, round, colVariances);
         writeArrayToFile(FILE_NAME_COL_ZERO_PROBABILITIES, round, colZeroProbabilities);
     }
+
+    private void writeRowData(int round, int[][] data) {
+
+        int[][] valueCountsPerPosition = new int[COLS][];
+        for (int position = 0; position < valueCountsPerPosition.length; ++position) {
+            valueCountsPerPosition[position] = new int[100];
+            Arrays.fill(valueCountsPerPosition[position], PRE_CALCULATED_PROBABILITIES_PADDING);
+        }
+
+
+        for (int[] row : data) {
+            for (int position = 0; position < row.length; ++position) {
+                int value = row[position];
+                valueCountsPerPosition[position][value] += 1;
+            }
+        }
+
+
+        double[][] valueProbabilitiesPerPosition = new double[COLS][];
+        for (int position = 0; position < valueProbabilitiesPerPosition.length; ++position) {
+
+            double[] valueProbabilities = new double[100];
+            for (int value = 0; value < valueCountsPerPosition[position].length; ++value) {
+                valueProbabilities[value] = (double)valueCountsPerPosition[position][value] / (100 * PRE_CALCULATED_PROBABILITIES_PADDING + data.length);
+            }
+            valueProbabilitiesPerPosition[position] = valueProbabilities;
+
+        }
+
+        writeMatrixToFile(FILE_NAME_PRE_CALCULATED_VALUE_PROBABILITIES, round, valueProbabilitiesPerPosition);
+    }
+
+
 
     private void writePredictorMatrix(int round, int[][] data) {
 
@@ -196,7 +269,8 @@ public class Statistics {
             return Trainer.class.getClassLoader().getResource(prefix + round + ".txt").toURI();
 
         } catch(NullPointerException e) {
-            System.out.println("Failed to write file: " + prefix + round + ".txt");
+            System.out.println("uriForPrefixAndRound(" + prefix + ", " + round + ") failed.");
+            e.printStackTrace(System.out);
             System.exit(3);
         } catch(URISyntaxException e) {
             e.printStackTrace(System.out);
@@ -228,6 +302,16 @@ public class Statistics {
             values[index++] = Double.parseDouble(line);
         }
         return values;
+    }
+
+    private double[] doubleArrayFromString(String line) {
+        String[] s = line.split(",");
+        double[] d = new double[s.length];
+
+        for (int i = 0; i < d.length; ++i) {
+            d[i] = Double.parseDouble(s[i]);
+        }
+        return d;
     }
 
     public static void main(String[] args) throws IOException {

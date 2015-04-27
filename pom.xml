@@ -64,6 +64,9 @@
                     <include>predictor_matrix_1.txt</include>
                     <include>predictor_matrix_2.txt</include>
                     <include>predictor_matrix_3.txt</include>
+                    <include>pre_calculated_probabilities_1.txt</include>
+                    <include>pre_calculated_probabilities_2.txt</include>
+                    <include>pre_calculated_probabilities_3.txt</include>
                 </includes>
             </resource>
         </resources>

@@ -3,6 +3,7 @@ package tade.propromo.predictor;
 import tade.propromo.Peak;
 import tade.propromo.Statistics;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -33,27 +34,38 @@ public class ThirdRoundPredictor implements Predictor {
     @Override
     public double[] predictRow(int round, int[] previousValues) {
 
-        double zeroProbability = Math.min(0.99999, statistics.getAverageZeroProbabilityForPosition(round));
+        if (Arrays.stream(previousValues).anyMatch(i -> i > 0)) {
+            double confidence = Math.min(0.99, calculateConfidence(previousValues, round));
 
-        if (zeroProbability < 0.95) {
-            Double[] prediction = new Double[100];
-            prediction[0] = zeroProbability;
-            double saveForTheRest = 0.01;
-            double remainingProbability = 1d - prediction[0] - saveForTheRest;
+            if (confidence > 0.9) {
 
-            List<Peak> peaksSoFar = Peak.peaksPerRow(previousValues);
-            List<Peak> filteredPeaks = peaksSoFar.stream().filter(peak -> peak.getItemCount() != 5).collect(Collectors.toList());
+                List<Peak> peaksSoFar = Peak.peaksPerRow(previousValues);
+                List<Peak> filteredPeaks = peaksSoFar.stream().filter(peak -> peak.getItemCount() != 5).collect(Collectors.toList());
 
-            for (Peak peak : filteredPeaks) {
-                prediction = predictPeak(prediction, peak, remainingProbability / filteredPeaks.size(), previousValues);
+                if (!filteredPeaks.isEmpty()) {
+                    Double[] prediction = new Double[100];
+                    for (Peak peak : filteredPeaks) {
+                        prediction = predictPeak(prediction, peak, confidence / filteredPeaks.size(), previousValues);
+                    }
+
+                    prediction[0] = Math.max(0.0001, 0.99 - confidence);
+                    return splitRemainingProbabilityForNulls(prediction);
+                }
+
             }
 
-            return splitRemainingProbabilityForNulls(prediction);
         }
 
-        Double[] prediction = new Double[100];
-        prediction[0] = Math.min(0.99999, zeroProbability);
-        return splitRemainingProbabilityForNulls(prediction);
+        return statistics.getPreviousProbabilities(3, round);
+    }
+
+    private double calculateConfidence(int[] previousValues, int unseenPosition) {
+        double confidence = 0d;
+        for (int i = 0; i < previousValues.length; ++i) {
+            if (previousValues[i] == 0) { continue; }
+            confidence = Math.max(confidence, statistics.getAveragedPrediction(i, unseenPosition));
+        }
+        return confidence;
     }
 
     private Double[] predictPeak(Double[] prediction, Peak peak, double probabilityForPeak, int[] previousValues) {
@@ -96,6 +108,10 @@ public class ThirdRoundPredictor implements Predictor {
             } else {
                 valueToBeShared -= d;
             }
+        }
+
+        if (valueToBeShared <= 0d) {
+            throw new RuntimeException("Value is too small to be shared: " + valueToBeShared);
         }
 
         double[] doubles = new double[prediction.length];
