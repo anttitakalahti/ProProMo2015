@@ -44,7 +44,9 @@
                 <includes>
                     <include>data1.csv</include>
                     <include>data2.csv</include>
+                    <include>data3.csv</include>
                     <include>line_numbers_for_round_1.txt</include>
+                    <include>line_numbers_for_round_2.txt</include>
                 </includes>
             </resource>
             <resource>
@@ -52,10 +54,16 @@
                 <includes>
                     <include>col_means_round_1.txt</include>
                     <include>col_means_round_2.txt</include>
+                    <include>col_means_round_3.txt</include>
                     <include>col_variances_round_1.txt</include>
                     <include>col_variances_round_2.txt</include>
+                    <include>col_variances_round_3.txt</include>
                     <include>col_zero_probabilities_round_1.txt</include>
                     <include>col_zero_probabilities_round_2.txt</include>
+                    <include>col_zero_probabilities_round_3.txt</include>
+                    <include>predictor_matrix_1.txt</include>
+                    <include>predictor_matrix_2.txt</include>
+                    <include>predictor_matrix_3.txt</include>
                 </includes>
             </resource>
         </resources>

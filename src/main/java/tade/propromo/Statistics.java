@@ -10,30 +10,34 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Statistics {
 
-    public static final int ROUNDS = 2;
+    public static final int ROUNDS = 3;
     public static final int COLS = 303;
     public static final String CHARSET_NAME = "UTF-8";
     public static final String STATISTICS_RESOURCES_FOLDER = "statistics";
     public static final String FILE_NAME_COL_MEANS = "col_means_round_";
     public static final String FILE_NAME_COL_VARIANCES = "col_variances_round_";
     public static final String FILE_NAME_COL_ZERO_PROBABILITIES = "col_zero_probabilities_round_";
-    public static final String FILE_NAME_ROW_PEAKS = "row_peaks_";
+    public static final String FILE_NAME_PREDICTOR_MATRIX = "predictor_matrix_";
 
     private ArrayList<double[]> colVariances;
     private ArrayList<double[]> colZeroProbabilities;
+    private ArrayList<double[][]> valuePredictors;
 
     public Statistics() {
         colVariances = new ArrayList<>();
         colZeroProbabilities = new ArrayList<>();
+        valuePredictors = new ArrayList<>();
 
         IntStream.rangeClosed(0, ROUNDS)
                 .forEach(i -> {
                     colVariances.add(null);
                     colZeroProbabilities.add(null);
+                    valuePredictors.add(null);
                 });
     }
 
@@ -47,6 +51,8 @@ public class Statistics {
         return colVariances.get(round);
     }
 
+
+
     /**
      * Be aware of this returning 1d
      * @param position
@@ -56,7 +62,7 @@ public class Statistics {
         return IntStream.rangeClosed(1,ROUNDS).mapToDouble(round -> getColZeroProbabilities(round)[position]).average().getAsDouble();
     }
 
-    public double[] getColZeroProbabilities(int round) {
+    private double[] getColZeroProbabilities(int round) {
         if (colZeroProbabilities.get(round) != null ) { return colZeroProbabilities.get(round); }
         colZeroProbabilities.set(round, readDoublesFromFile(FILE_NAME_COL_ZERO_PROBABILITIES, round, COLS));
         return colZeroProbabilities.get(round);
@@ -78,7 +84,7 @@ public class Statistics {
 
     public void writeStats(int round, int[][] data) {
         writeColData(round, data);
-        writeRowData(round, data);
+        writePredictorMatrix(round, data);
     }
 
     private void writeColData(int round, int[][] data) {
@@ -106,28 +112,39 @@ public class Statistics {
         writeArrayToFile(FILE_NAME_COL_ZERO_PROBABILITIES, round, colZeroProbabilities);
     }
 
+    private void writePredictorMatrix(int round, int[][] data) {
 
+        double[][] matrix = new double[302][];
 
+        for (int i = 0; i < matrix.length; ++i) {
 
-    private void writeRowData(int round, int[][] data) {
-        double[] roundMeans = new double[data.length];
-        double[] roundVariances = new double[data.length];
-        int[] peaksPerRow = new int[100];
+            final int position = i;
 
-        int index = 0;
-        for (int[] row : data) {
-            int[] nonZeroValues = Arrays.stream(row)
-                    .filter(x -> x > 0)
-                    .toArray();
+            List<int[]> rowsWithValueInPosition = Arrays.stream(data)
+                    .filter(row -> row[position] > 0)
+                    .collect(Collectors.toList());
 
-            roundMeans[index] = Arrays.stream(nonZeroValues).average().getAsDouble();
-            roundVariances[index] = calculateVariance(nonZeroValues, roundMeans[index]);
-            peaksPerRow[Peak.peaksPerRow(row).size()]++;
+            int[] predictedCounts = new int[303];
 
-            index++;
+            for (int[] row : rowsWithValueInPosition) {
+                for (int j = position + 1; j < 303; ++j) {
+                    if (row[j] > 0) {
+                        predictedCounts[j]++;
+                    }
+                }
+            }
+
+            matrix[position] = new double[303];
+            Arrays.fill(matrix[position], 0d);
+
+            for (int j = position + 1; j < 303; ++j) {
+                if (rowsWithValueInPosition.isEmpty()) { continue; }
+                matrix[position][j] = (double)predictedCounts[j] / rowsWithValueInPosition.size();
+            }
+
         }
 
-        writeArrayToFile(FILE_NAME_ROW_PEAKS, round, peaksPerRow);
+        writeMatrixToFile(FILE_NAME_PREDICTOR_MATRIX, round, matrix);
     }
 
     // http://www.wolframalpha.com/input/?i=variance+of+1%2C2%2C3&lk=4&num=1
@@ -158,14 +175,14 @@ public class Statistics {
         writeStringsToFile(uriForPrefixAndRound(fileNamePrefix, round), doublesToStrings(values));
     }
 
-    private void writeArrayToFile(String fileNamePrefix, int round, int[] values) {
-        writeStringsToFile(uriForPrefixAndRound(fileNamePrefix, round), intsToStrings(values));
+    private void writeMatrixToFile(String fileNamePrefix, int round, double[][] matrix) {
+        writeStringsToFile(uriForPrefixAndRound(fileNamePrefix, round), matrixToStrings(matrix));
     }
 
     private void writeStringsToFile(URI uri, Iterable<String> strings) {
         try {
 
-            Files.write(Paths.get(uri), strings, Charset.forName(CHARSET_NAME), StandardOpenOption.CREATE);
+            Files.write(Paths.get(uri), strings, Charset.forName(CHARSET_NAME));
 
         } catch (IOException e) {
             e.printStackTrace(System.out);
@@ -178,6 +195,9 @@ public class Statistics {
 
             return Trainer.class.getClassLoader().getResource(prefix + round + ".txt").toURI();
 
+        } catch(NullPointerException e) {
+            System.out.println("Failed to write file: " + prefix + round + ".txt");
+            System.exit(3);
         } catch(URISyntaxException e) {
             e.printStackTrace(System.out);
             System.exit(1);
@@ -185,18 +205,18 @@ public class Statistics {
         return null;
     }
 
-    private Iterable<String> intsToStrings(int[] values) {
-        ArrayList<String> strings = new ArrayList<>();
-        for (int i : values) {
-            strings.add("" + i);
-        }
-        return strings;
-    }
-
     private Iterable<String> doublesToStrings(double[] values) {
         ArrayList<String> strings = new ArrayList<>();
         for (double d : values) {
             strings.add(String.format("%.10f", d));
+        }
+        return strings;
+    }
+
+    private Iterable<String> matrixToStrings(double[][] matrix) {
+        ArrayList<String> strings = new ArrayList<>();
+        for (double[] doubles : matrix) {
+            strings.add(Worker.arrayToCSV(doubles));
         }
         return strings;
     }
@@ -219,6 +239,9 @@ public class Statistics {
 
         data = Trainer.initializeTestDataFromFile(Trainer.TRAINING_DATA_FILE_NAME_ROUND_TWO);
         statistics.writeStats(2, data);
+
+        data = Trainer.initializeTestDataFromFile(Trainer.TRAINING_DATA_FILE_NAME_ROUND_THREE);
+        statistics.writeStats(3, data);
     }
 
 }

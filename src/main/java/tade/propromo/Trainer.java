@@ -13,11 +13,13 @@ import java.util.HashSet;
 
 public class Trainer {
 
-    public static final String TRAINING_DATA_FILE_NAME_ROUND_ONE = "data1.csv";
-    public static final String TRAINING_DATA_FILE_NAME_ROUND_TWO = "data2.csv";
+    public static final String TRAINING_DATA_FILE_NAME_ROUND_ONE   = "data1.csv";
+    public static final String TRAINING_DATA_FILE_NAME_ROUND_TWO   = "data2.csv";
+    public static final String TRAINING_DATA_FILE_NAME_ROUND_THREE = "data3.csv";
 
     public static final int TRAINING_DATA_ROWS_ROUND_ONE = 67785;
     public static final int TRAINING_DATA_ROWS_ROUND_TWO = 68760;
+    public static final int TRAINING_DATA_ROWS_ROUND_THREE = 94671;
 
     public static void main(String[] args) throws Exception {
 
@@ -42,9 +44,12 @@ public class Trainer {
     }
 
     public static int[][] initializeTestDataFromFile(String fileName) throws IOException {
-        int rows = TRAINING_DATA_ROWS_ROUND_TWO;
-        if (fileName.equals(TRAINING_DATA_FILE_NAME_ROUND_ONE)) {
-            rows = TRAINING_DATA_ROWS_ROUND_ONE;
+        int rows = TRAINING_DATA_ROWS_ROUND_ONE;
+
+        if (fileName.equals(TRAINING_DATA_FILE_NAME_ROUND_TWO)) {
+            rows = TRAINING_DATA_ROWS_ROUND_TWO;
+        } else if (fileName.equals(TRAINING_DATA_FILE_NAME_ROUND_THREE)) {
+            rows = TRAINING_DATA_ROWS_ROUND_THREE;
         }
         return initializeTestDataFromFile(fileName, rows);
     }

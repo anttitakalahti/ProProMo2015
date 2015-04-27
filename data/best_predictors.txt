@@ -1,0 +1,302 @@
+Position:   1 Round one:            Round two:            Round three:            
+Position:   2 Round one:            Round two:   0 0.0014 Round three:            
+Position:   3 Round one:   2 0.0625 Round two:            Round three:            
+Position:   4 Round one:            Round two:   2 0.1500 Round three:            
+Position:   5 Round one:   2 0.1940 Round two:   2 0.1995 Round three:   2 0.1375 
+Position:   6 Round one:   2 1.0000 Round two:            Round three:            
+Position:   7 Round one:   5 0.2250 Round two:            Round three:            
+Position:   8 Round one:   5 0.3846 Round two:            Round three:   1 0.1124 
+Position:   9 Round one:   5 0.4675 Round two:   5 0.3898 Round three:   5 0.4786 
+Position:  10 Round one:   5 0.1667 Round two:            Round three:            
+Position:  11 Round one:   5 0.4642 Round two:   9 0.4130 Round three:   9 0.5220 
+Position:  12 Round one:   5 0.5424 Round two:   5 0.4453 Round three:   5 0.6007 
+Position:  13 Round one:   5 0.2857 Round two:   5 0.3333 Round three:  12 0.3622 
+Position:  14 Round one:   9 0.2914 Round two:   9 0.1379 Round three:   5 0.1692 
+Position:  15 Round one:   1 0.1538 Round two:            Round three:            
+Position:  16 Round one:   7 0.0018 Round two:   0 0.0019 Round three:   5 0.0031 
+Position:  17 Round one:   5 0.3472 Round two:  12 0.5802 Round three:   5 0.6090 
+Position:  18 Round one:   5 0.5385 Round two:   5 0.5000 Round three:   5 1.0000 
+Position:  19 Round one:  16 0.3585 Round two:            Round three:            
+Position:  20 Round one:  14 0.5129 Round two:  16 0.9652 Round three:  16 0.9154 
+Position:  21 Round one:   5 0.7735 Round two:   5 0.7447 Round three:   5 0.7631 
+Position:  22 Round one:  14 0.7655 Round two:  14 0.8571 Round three:            
+Position:  23 Round one:            Round two:   5 1.0000 Round three:            
+Position:  24 Round one:  14 0.7413 Round two:  14 0.7647 Round three:  16 0.7612 
+Position:  25 Round one:   5 0.3873 Round two:   5 0.4233 Round three:   5 0.3994 
+Position:  26 Round one:  14 0.6345 Round two:   1 0.4571 Round three:   1 0.3333 
+Position:  27 Round one:  14 0.7231 Round two:  26 1.0000 Round three:  14 0.5000 
+Position:  28 Round one:  16 0.7982 Round two:  16 0.8494 Round three:  16 0.6048 
+Position:  29 Round one:   5 0.3571 Round two:            Round three:   5 0.5862 
+Position:  30 Round one:  16 0.6667 Round two:            Round three:            
+Position:  31 Round one:   5 0.3402 Round two:  25 0.3683 Round three:   5 0.3509 
+Position:  32 Round one:  28 0.3095 Round two:            Round three:            
+Position:  33 Round one:  16 0.8909 Round two:  16 0.9070 Round three:  16 0.6923 
+Position:  34 Round one:   1 0.8039 Round two:   1 0.7840 Round three:   1 0.7622 
+Position:  35 Round one:   5 0.5000 Round two:  21 0.6322 Round three:  16 0.6380 
+Position:  36 Round one:            Round two:  16 0.9688 Round three:            
+Position:  37 Round one:   9 0.8128 Round two:   9 0.8396 Round three:   9 0.7779 
+Position:  38 Round one:            Round two:  31 0.4176 Round three:            
+Position:  39 Round one:            Round two:  16 0.5185 Round three:   5 0.3938 
+Position:  40 Round one:   5 0.7692 Round two:  21 0.7921 Round three:   5 0.6642 
+Position:  41 Round one:   2 0.8501 Round two:   2 0.9025 Round three:   2 0.7873 
+Position:  42 Round one:  16 0.7952 Round two:  16 0.8567 Round three:  16 0.5920 
+Position:  43 Round one:   5 0.4444 Round two:            Round three:            
+Position:  44 Round one:            Round two:  34 0.7826 Round three:            
+Position:  45 Round one:   5 0.3838 Round two:  21 0.6568 Round three:   5 0.9130 
+Position:  46 Round one:  31 0.8966 Round two:  17 0.7366 Round three:  17 0.6388 
+Position:  47 Round one:  31 0.7294 Round two:  31 0.8454 Round three:  31 0.5685 
+Position:  48 Round one:   5 0.6333 Round two:            Round three:            
+Position:  49 Round one:  16 0.9538 Round two:            Round three:            
+Position:  50 Round one:  16 0.9800 Round two:  16 0.9786 Round three:  16 0.9780 
+Position:  51 Round one:   5 0.6288 Round two:  16 0.6250 Round three:   5 0.6743 
+Position:  52 Round one:   5 0.8464 Round two:   5 0.8197 Round three:   5 0.8216 
+Position:  53 Round one:            Round two:   5 0.5103 Round three:            
+Position:  54 Round one:   5 0.5000 Round two:            Round three:            
+Position:  55 Round one:   5 0.5426 Round two:  16 0.5965 Round three:            
+Position:  56 Round one:  25 0.7803 Round two:  25 0.8645 Round three:  25 0.6754 
+Position:  57 Round one:  11 0.3636 Round two:   5 0.8000 Round three:            
+Position:  58 Round one:            Round two:  50 1.0000 Round three:  50 0.9812 
+Position:  59 Round one:  50 0.7496 Round two:  50 0.7140 Round three:  50 0.7707 
+Position:  60 Round one:   5 0.8067 Round two:  52 0.8144 Round three:  52 0.8118 
+Position:  61 Round one:  25 0.7946 Round two:  25 0.8669 Round three:  59 0.7044 
+Position:  62 Round one:            Round two:  11 0.4118 Round three:            
+Position:  63 Round one:  11 0.8548 Round two:  11 0.8457 Round three:  11 0.8825 
+Position:  64 Round one:            Round two:  31 0.2500 Round three:            
+Position:  65 Round one:  50 0.6574 Round two:  50 0.6102 Round three:  50 0.7155 
+Position:  66 Round one:   5 0.8048 Round two:   5 0.9123 Round three:   5 0.8797 
+Position:  67 Round one:   5 0.8152 Round two:  52 0.8095 Round three:  52 0.8116 
+Position:  68 Round one:            Round two:  16 1.0000 Round three:            
+Position:  69 Round one:  21 0.8901 Round two:  21 0.8745 Round three:  21 0.9078 
+Position:  70 Round one:            Round two:  25 1.0000 Round three:            
+Position:  71 Round one:   5 0.8014 Round two:  52 0.8118 Round three:   5 0.8044 
+Position:  72 Round one:  65 0.8552 Round two:  65 0.7015 Round three:  65 0.6720 
+Position:  73 Round one:            Round two:  59 0.7500 Round three:            
+Position:  74 Round one:  65 0.7797 Round two:  65 0.7749 Round three:  65 0.7719 
+Position:  75 Round one:  50 0.9804 Round two:  50 0.9554 Round three:  16 0.6000 
+Position:  76 Round one:  74 0.7710 Round two:  65 0.8621 Round three:  59 0.7867 
+Position:  77 Round one:  31 0.8370 Round two:  31 0.8562 Round three:  31 0.8220 
+Position:  78 Round one:  74 0.9434 Round two:            Round three:            
+Position:  79 Round one:            Round two:  35 0.8000 Round three:            
+Position:  80 Round one:            Round two:  21 0.5000 Round three:  69 0.7043 
+Position:  81 Round one:            Round two:  22 1.0000 Round three:  16 0.7500 
+Position:  82 Round one:   2 0.8559 Round two:   2 0.9050 Round three:  41 0.8044 
+Position:  83 Round one:  74 0.7727 Round two:  65 0.9268 Round three:  59 1.0000 
+Position:  84 Round one:  63 0.8544 Round two:  63 0.8640 Round three:  63 0.9003 
+Position:  85 Round one:  56 0.7743 Round two:  61 0.8504 Round three:  59 0.6972 
+Position:  86 Round one:  11 0.6171 Round two:  84 0.6078 Round three:  63 0.6707 
+Position:  87 Round one:   5 0.6910 Round two:  69 0.6723 Round three:  21 0.7079 
+Position:  88 Round one:  31 0.9191 Round two:  17 0.6951 Round three:  17 0.6405 
+Position:  89 Round one:  50 0.9814 Round two:  50 0.7456 Round three:  50 0.8716 
+Position:  90 Round one:  50 0.9004 Round two:  50 0.9239 Round three:  50 0.9183 
+Position:  91 Round one:  50 0.7938 Round two:  50 0.8398 Round three:  65 0.6524 
+Position:  92 Round one:  65 0.5789 Round two:            Round three:            
+Position:  93 Round one:            Round two:  28 1.0000 Round three:  16 1.0000 
+Position:  94 Round one:   5 0.9375 Round two:            Round three:            
+Position:  95 Round one:  27 0.7769 Round two:  65 0.8974 Round three:  59 1.0000 
+Position:  96 Round one:  74 0.4874 Round two:            Round three:            
+Position:  97 Round one:  82 0.8598 Round two:  41 0.9119 Round three:  41 0.8200 
+Position:  98 Round one:  50 0.9583 Round two:  50 0.9196 Round three:  16 0.8182 
+Position:  99 Round one:  59 0.9192 Round two:  59 0.9138 Round three:  59 0.7711 
+Position: 100 Round one:  16 1.0000 Round two:            Round three:  16 0.9268 
+Position: 101 Round one:  65 0.5517 Round two:  65 0.6000 Round three:  65 0.6125 
+Position: 102 Round one:  11 0.8165 Round two:  84 0.8109 Round three:  63 0.8871 
+Position: 103 Round one:  47 0.8176 Round two:  77 0.8386 Round three:  47 0.7083 
+Position: 104 Round one:  65 0.7500 Round two:  65 1.0000 Round three:  31 0.7981 
+Position: 105 Round one:  50 0.9286 Round two:  50 0.9091 Round three:  50 0.7143 
+Position: 106 Round one:            Round two:   5 0.5000 Round three:  72 1.0000 
+Position: 107 Round one:  74 0.7500 Round two:            Round three:            
+Position: 108 Round one:  27 0.8256 Round two:  26 1.0000 Round three:  16 0.8615 
+Position: 109 Round one:  59 0.6553 Round two:  65 0.6381 Round three:  65 0.6794 
+Position: 110 Round one:  87 0.8252 Round two:  87 0.7891 Round three:  87 0.7876 
+Position: 111 Round one:  59 0.6602 Round two:  59 0.6457 Round three:   5 0.5603 
+Position: 112 Round one:  59 1.0000 Round two:  59 0.8571 Round three:  20 1.0000 
+Position: 113 Round one: 111 0.8271 Round two: 111 0.8153 Round three: 111 0.8114 
+Position: 114 Round one:  50 0.9582 Round two:  50 0.9736 Round three:  50 0.9780 
+Position: 115 Round one:  86 0.8395 Round two:  86 0.8648 Round three:  86 0.8229 
+Position: 116 Round one:  50 0.9128 Round two:  65 0.6111 Round three:  16 0.7619 
+Position: 117 Round one:  65 0.7407 Round two:            Round three:            
+Position: 118 Round one: 109 0.8906 Round two: 109 0.8583 Round three: 109 0.8454 
+Position: 119 Round one:  16 0.9657 Round two:            Round three:            
+Position: 120 Round one: 103 0.8137 Round two:  31 0.8479 Round three: 103 0.7260 
+Position: 121 Round one:   1 1.0000 Round two: 109 0.9167 Round three:   1 0.7500 
+Position: 122 Round one:  50 0.7079 Round two:  50 0.6823 Round three:  50 0.7186 
+Position: 123 Round one:  52 0.5556 Round two:            Round three:            
+Position: 124 Round one:   1 1.0000 Round two:  59 0.9167 Round three:  20 1.0000 
+Position: 125 Round one:  31 0.9056 Round two:  31 0.9260 Round three:   5 0.6200 
+Position: 126 Round one:  50 0.9324 Round two:  50 0.9247 Round three:            
+Position: 127 Round one:            Round two:  37 1.0000 Round three:            
+Position: 128 Round one: 126 0.9234 Round two: 126 0.9576 Round three:  50 0.9186 
+Position: 129 Round one:  51 0.7600 Round two:            Round three:            
+Position: 130 Round one:  65 0.7723 Round two:  65 0.6400 Round three:  74 0.7848 
+Position: 131 Round one:  59 0.9205 Round two:  59 0.9079 Round three:  59 0.7595 
+Position: 132 Round one: 126 0.9578 Round two:  50 0.9672 Round three:  50 0.9811 
+Position: 133 Round one: 126 0.7500 Round two:  65 0.6667 Round three:  31 0.8144 
+Position: 134 Round one:  74 0.9207 Round two:  74 0.9817 Round three:  59 0.5566 
+Position: 135 Round one:            Round two:  22 1.0000 Round three:  42 1.0000 
+Position: 136 Round one:  21 0.8485 Round two:  21 0.8571 Round three:            
+Position: 137 Round one:   2 0.5000 Round two:            Round three:            
+Position: 138 Round one:            Round two:  63 0.5581 Round three:            
+Position: 139 Round one:            Round two: 110 1.0000 Round three:            
+Position: 140 Round one:            Round two:  16 1.0000 Round three:            
+Position: 141 Round one:  59 0.6310 Round two:  65 0.6281 Round three:  59 0.5747 
+Position: 142 Round one:            Round two:  74 0.8222 Round three:            
+Position: 143 Round one:  77 0.8037 Round two:  31 0.8367 Round three:  31 0.7987 
+Position: 144 Round one:  59 1.0000 Round two:   1 0.8889 Round three:   1 0.5000 
+Position: 145 Round one:   5 0.8141 Round two:  52 0.7914 Round three:  52 0.8011 
+Position: 146 Round one:            Round two: 141 0.7000 Round three:            
+Position: 147 Round one: 126 0.8756 Round two: 126 0.8972 Round three:  50 0.7192 
+Position: 148 Round one: 131 0.9581 Round two:  59 0.9150 Round three: 131 0.9511 
+Position: 149 Round one:            Round two:  21 0.8921 Round three:            
+Position: 150 Round one:  31 1.0000 Round two:            Round three:  59 1.0000 
+Position: 151 Round one:  21 0.8667 Round two:   5 1.0000 Round three:  52 0.6127 
+Position: 152 Round one:  74 0.9841 Round two:  74 0.9788 Round three:  59 0.9628 
+Position: 153 Round one:  84 0.5365 Round two: 141 0.4342 Round three: 141 0.6933 
+Position: 154 Round one:  59 0.6009 Round two:            Round three:            
+Position: 155 Round one:  21 0.8851 Round two:  69 0.8613 Round three:  21 0.8951 
+Position: 156 Round one:  16 0.8000 Round two: 126 0.9565 Round three:            
+Position: 157 Round one: 111 0.9018 Round two:  65 0.8254 Round three:  59 0.6857 
+Position: 158 Round one:  86 0.8518 Round two:  86 0.8715 Round three:  86 0.8434 
+Position: 159 Round one:  74 0.9353 Round two:  74 0.9824 Round three: 134 0.7115 
+Position: 160 Round one:  59 0.6479 Round two:  74 0.6632 Round three:            
+Position: 161 Round one:            Round two:  14 1.0000 Round three:  16 1.0000 
+Position: 162 Round one:  59 0.8191 Round two:  59 0.7763 Round three:  59 0.7773 
+Position: 163 Round one:  59 0.8072 Round two:            Round three:            
+Position: 164 Round one: 143 0.8967 Round two: 143 0.9233 Round three: 141 0.7788 
+Position: 165 Round one:  59 1.0000 Round two:            Round three:            
+Position: 166 Round one:            Round two:  65 1.0000 Round three:            
+Position: 167 Round one:   5 0.5686 Round two:   5 0.8750 Round three:            
+Position: 168 Round one:            Round two:  59 1.0000 Round three:            
+Position: 169 Round one: 109 0.9122 Round two:  74 0.8772 Round three:  59 0.8667 
+Position: 170 Round one: 126 0.9787 Round two: 126 0.9688 Round three:  50 0.8083 
+Position: 171 Round one:            Round two: 141 0.5706 Round three:            
+Position: 172 Round one: 126 0.9221 Round two: 126 0.9562 Round three:  50 0.9170 
+Position: 173 Round one:            Round two:  59 0.7077 Round three:   5 0.8214 
+Position: 174 Round one: 162 0.8154 Round two:            Round three:            
+Position: 175 Round one: 109 0.9626 Round two:  74 0.8571 Round three: 109 0.9545 
+Position: 176 Round one: 126 0.8726 Round two: 126 0.9003 Round three: 122 0.7286 
+Position: 177 Round one:  27 1.0000 Round two:  14 1.0000 Round three:  20 1.0000 
+Position: 178 Round one: 113 0.7935 Round two: 113 0.7725 Round three: 141 0.8103 
+Position: 179 Round one: 109 0.8816 Round two: 109 0.8600 Round three: 109 0.8417 
+Position: 180 Round one: 126 0.8000 Round two:            Round three:            
+Position: 181 Round one: 155 0.8833 Round two: 155 0.8798 Round three: 155 0.9178 
+Position: 182 Round one:  16 0.7500 Round two:            Round three:            
+Position: 183 Round one: 155 0.7808 Round two:            Round three:            
+Position: 184 Round one: 126 0.9982 Round two: 126 0.9964 Round three:  50 0.9898 
+Position: 185 Round one: 162 0.8860 Round two: 162 0.8536 Round three: 162 0.8650 
+Position: 186 Round one: 145 0.8472 Round two: 145 0.9584 Round three: 145 0.9380 
+Position: 187 Round one:  87 0.8062 Round two:  87 0.7655 Round three:  87 0.7646 
+Position: 188 Round one:  50 0.8875 Round two:            Round three:            
+Position: 189 Round one: 162 0.5009 Round two:  65 0.4709 Round three:  90 0.6216 
+Position: 190 Round one: 178 0.8915 Round two: 178 0.8881 Round three: 178 0.8996 
+Position: 191 Round one: 145 0.8542 Round two: 145 0.8720 Round three: 145 0.8661 
+Position: 192 Round one:            Round two:  16 1.0000 Round three:            
+Position: 193 Round one: 145 0.8696 Round two:            Round three:            
+Position: 194 Round one:            Round two:  59 0.7059 Round three:            
+Position: 195 Round one:   5 0.8889 Round two:            Round three:            
+Position: 196 Round one: 145 0.8398 Round two: 145 0.9361 Round three: 145 0.9327 
+Position: 197 Round one: 196 0.8855 Round two: 145 0.9447 Round three: 145 0.9390 
+Position: 198 Round one:  65 0.6000 Round two:            Round three:            
+Position: 199 Round one:  65 0.9283 Round two:  74 0.9827 Round three: 134 0.6695 
+Position: 200 Round one:   5 1.0000 Round two:            Round three:            
+Position: 201 Round one:            Round two:  28 1.0000 Round three:            
+Position: 202 Round one:  65 0.6038 Round two:            Round three:            
+Position: 203 Round one:  74 0.9850 Round two:  74 0.9791 Round three: 162 0.9894 
+Position: 204 Round one: 187 0.8361 Round two: 187 0.7990 Round three: 187 0.7979 
+Position: 205 Round one: 126 0.9402 Round two:            Round three:            
+Position: 206 Round one: 126 0.8686 Round two: 126 0.9409 Round three:  65 0.6498 
+Position: 207 Round one: 126 0.6957 Round two:            Round three:            
+Position: 208 Round one:   2 1.0000 Round two:            Round three:            
+Position: 209 Round one: 143 0.8724 Round two: 143 0.9030 Round three: 143 0.8668 
+Position: 210 Round one: 115 0.6452 Round two:            Round three:  65 0.5000 
+Position: 211 Round one: 162 0.9686 Round two: 162 0.9509 Round three: 131 0.9533 
+Position: 212 Round one:            Round two:  16 0.5000 Round three:  90 1.0000 
+Position: 213 Round one: 145 0.9041 Round two: 145 0.8856 Round three: 145 0.8961 
+Position: 214 Round one: 109 0.8845 Round two: 109 0.8561 Round three: 109 0.8469 
+Position: 215 Round one:            Round two: 185 0.8947 Round three:            
+Position: 216 Round one:            Round two: 126 0.9602 Round three:            
+Position: 217 Round one:            Round two: 110 1.0000 Round three:            
+Position: 218 Round one: 145 0.7266 Round two:            Round three:            
+Position: 219 Round one:            Round two: 126 0.9341 Round three:            
+Position: 220 Round one:            Round two:  22 1.0000 Round three:  90 1.0000 
+Position: 221 Round one: 126 0.7194 Round two:  50 0.9226 Round three:            
+Position: 222 Round one: 145 0.5625 Round two:            Round three:            
+Position: 223 Round one:            Round two:  21 0.5978 Round three:            
+Position: 224 Round one:   1 1.0000 Round two:  59 0.9000 Round three:   1 0.6667 
+Position: 225 Round one:  74 0.9348 Round two:  74 0.9795 Round three: 134 0.6719 
+Position: 226 Round one:            Round two: 141 0.5089 Round three: 141 0.5370 
+Position: 227 Round one: 196 0.8875 Round two: 145 0.9412 Round three: 145 0.9416 
+Position: 228 Round one: 204 0.7778 Round two:  87 0.7389 Round three: 145 0.7626 
+Position: 229 Round one:  50 0.9584 Round two:  50 0.9739 Round three:  50 0.9788 
+Position: 230 Round one:  65 0.7759 Round two:  65 0.7684 Round three:  65 0.7730 
+Position: 231 Round one: 145 0.8503 Round two: 145 0.8728 Round three: 145 0.8701 
+Position: 232 Round one:  59 1.0000 Round two:            Round three:            
+Position: 233 Round one: 102 0.9087 Round two: 102 0.9294 Round three: 102 0.9257 
+Position: 234 Round one: 126 0.8801 Round two: 126 0.8962 Round three: 176 0.7278 
+Position: 235 Round one: 126 0.8684 Round two: 126 0.8902 Round three:  50 0.7166 
+Position: 236 Round one:  16 0.8333 Round two:            Round three:            
+Position: 237 Round one: 126 0.9883 Round two: 126 0.9868 Round three:            
+Position: 238 Round one: 237 0.6594 Round two:            Round three:            
+Position: 239 Round one:  16 1.0000 Round two:            Round three:  90 0.6667 
+Position: 240 Round one: 237 0.9305 Round two: 237 0.9637 Round three:  50 0.9166 
+Position: 241 Round one:            Round two:  16 0.5000 Round three:  90 1.0000 
+Position: 242 Round one: 115 0.7948 Round two: 158 0.8119 Round three: 115 0.7801 
+Position: 243 Round one: 209 0.8957 Round two:  17 0.7141 Round three: 141 0.7576 
+Position: 244 Round one: 237 1.0000 Round two: 237 0.9996 Round three:  50 0.9894 
+Position: 245 Round one:   2 1.0000 Round two:  16 0.6667 Round three:   1 1.0000 
+Position: 246 Round one:  65 0.7942 Round two:  65 0.7836 Round three:  65 0.7849 
+Position: 247 Round one:  52 0.6364 Round two:            Round three:            
+Position: 248 Round one: 237 1.0000 Round two: 237 0.9995 Round three:  50 0.9892 
+Position: 249 Round one:            Round two:   0 1.0000 Round three:            
+Position: 250 Round one:  47 0.8326 Round two: 143 0.8581 Round three: 141 0.7569 
+Position: 251 Round one: 237 0.9301 Round two: 237 0.9644 Round three:  50 0.9169 
+Position: 252 Round one: 185 1.0000 Round two:            Round three:  16 0.7798 
+Position: 253 Round one: 143 0.8657 Round two: 143 0.9030 Round three: 143 0.8760 
+Position: 254 Round one:  74 0.9368 Round two:  74 0.9766 Round three: 134 0.6734 
+Position: 255 Round one: 178 0.9866 Round two: 109 0.8750 Round three:  59 0.9333 
+Position: 256 Round one:            Round two:   0 1.0000 Round three:            
+Position: 257 Round one:  37 0.7986 Round two:  37 0.8361 Round three: 141 0.7805 
+Position: 258 Round one:  85 0.8319 Round two:  85 0.9018 Round three: 141 0.8459 
+Position: 259 Round one: 145 0.9000 Round two: 145 0.8863 Round three: 145 0.8996 
+Position: 260 Round one: 230 0.7692 Round two:  13 1.0000 Round three: 143 0.7961 
+Position: 261 Round one:   5 1.0000 Round two:            Round three:            
+Position: 262 Round one:            Round two:   5 1.0000 Round three:   0 1.0000 
+Position: 263 Round one: 143 0.9155 Round two: 143 0.9372 Round three: 141 0.7848 
+Position: 264 Round one:            Round two:  16 1.0000 Round three:            
+Position: 265 Round one: 109 0.8600 Round two: 109 0.8234 Round three: 109 0.8265 
+Position: 266 Round one: 143 0.9128 Round two:  31 0.9142 Round three: 141 0.8019 
+Position: 267 Round one: 162 0.8863 Round two: 162 0.8509 Round three: 162 0.8638 
+Position: 268 Round one: 242 0.9056 Round two: 242 0.9307 Round three: 242 0.8924 
+Position: 269 Round one: 162 0.8646 Round two: 111 0.6667 Round three:  50 0.9905 
+Position: 270 Round one: 237 0.9954 Round two: 237 0.9948 Round three:            
+Position: 271 Round one: 155 0.8917 Round two: 155 0.8802 Round three: 155 0.9159 
+Position: 272 Round one: 162 0.9689 Round two: 162 0.9549 Round three: 131 0.9542 
+Position: 273 Round one: 126 0.8750 Round two:  65 1.0000 Round three: 143 0.7934 
+Position: 274 Round one: 230 0.7633 Round two: 230 0.7494 Round three: 230 0.7632 
+Position: 275 Round one: 274 0.9992 Round two: 274 0.9971 Round three: 274 0.9958 
+Position: 276 Round one: 230 0.9500 Round two:            Round three:            
+Position: 277 Round one: 237 0.8785 Round two: 237 0.9514 Round three: 274 0.6648 
+Position: 278 Round one: 270 0.8175 Round two: 237 0.6905 Round three: 230 0.8462 
+Position: 279 Round one: 237 0.9952 Round two: 237 0.9953 Round three:            
+Position: 280 Round one:  82 0.8448 Round two:  97 0.8935 Round three:  82 0.7577 
+Position: 281 Round one: 257 0.7593 Round two:  37 0.8166 Round three: 141 0.7654 
+Position: 282 Round one: 209 0.9149 Round two:  17 0.7066 Round three: 141 0.7618 
+Position: 283 Round one: 237 0.9694 Round two: 237 0.9745 Round three:  50 0.9767 
+Position: 284 Round one: 265 1.0000 Round two:  14 1.0000 Round three:            
+Position: 285 Round one: 265 1.0000 Round two:  14 1.0000 Round three:  14 1.0000 
+Position: 286 Round one:  16 1.0000 Round two:  16 1.0000 Round three:  16 0.9565 
+Position: 287 Round one:            Round two: 274 0.6882 Round three:            
+Position: 288 Round one:            Round two:   5 1.0000 Round three:            
+Position: 289 Round one: 281 0.8636 Round two: 281 0.8899 Round three: 281 0.8230 
+Position: 290 Round one:            Round two:   0 1.0000 Round three:            
+Position: 291 Round one: 237 0.9959 Round two: 237 0.9952 Round three:            
+Position: 292 Round one: 178 0.8913 Round two: 178 0.8866 Round three: 178 0.8935 
+Position: 293 Round one: 162 0.8706 Round two: 274 0.7778 Round three: 141 0.7403 
+Position: 294 Round one:  86 1.0000 Round two:            Round three: 141 0.8333 
+Position: 295 Round one: 162 0.8837 Round two: 162 0.8486 Round three: 162 0.8581 
+Position: 296 Round one: 274 0.7459 Round two:            Round three:            
+Position: 297 Round one: 267 0.5897 Round two:            Round three:            
+Position: 298 Round one:            Round two: 145 0.9484 Round three:            
+Position: 299 Round one: 237 0.9694 Round two: 237 0.9778 Round three:  50 0.9797 
+Position: 300 Round one: 274 0.8356 Round two: 274 0.8504 Round three: 141 0.7511 
+Position: 301 Round one: 292 0.7857 Round two:            Round three:  86 0.8571 
+Position: 302 Round one:            Round two:            Round three:    
