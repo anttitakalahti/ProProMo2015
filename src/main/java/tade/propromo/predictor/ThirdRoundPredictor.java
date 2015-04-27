@@ -16,47 +16,20 @@ public class ThirdRoundPredictor implements Predictor {
         statistics = new Statistics();
     }
 
-    public ThirdRoundPredictor(Statistics statistics) {
-        this.statistics = statistics;
-    }
-
     @Override
     public double[] getFirstGuess() {
-
 
         Double[] prediction = new Double[100];
         prediction[0] = Math.min(0.99999, statistics.getAverageZeroProbabilityForPosition(0));
         return splitRemainingProbabilityForNulls(prediction);
-
 
     }
 
     @Override
     public double[] predictRow(int round, int[] previousValues) {
 
-        if (Arrays.stream(previousValues).anyMatch(i -> i > 0)) {
-            double confidence = Math.min(0.99, calculateConfidence(previousValues, round));
-
-            if (confidence > 0.9) {
-
-                List<Peak> peaksSoFar = Peak.peaksPerRow(previousValues);
-                List<Peak> filteredPeaks = peaksSoFar.stream().filter(peak -> peak.getItemCount() != 5).collect(Collectors.toList());
-
-                if (!filteredPeaks.isEmpty()) {
-                    Double[] prediction = new Double[100];
-                    for (Peak peak : filteredPeaks) {
-                        prediction = predictPeak(prediction, peak, confidence / filteredPeaks.size(), previousValues);
-                    }
-
-                    prediction[0] = Math.max(0.0001, 0.99 - confidence);
-                    // return splitRemainingProbabilityForNulls(prediction);
-                }
-
-            }
-
-        }
-
         return statistics.getPreviousProbabilities(3, round);
+
     }
 
     private double calculateConfidence(int[] previousValues, int unseenPosition) {
