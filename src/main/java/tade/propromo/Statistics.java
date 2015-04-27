@@ -66,8 +66,9 @@ public class Statistics {
     public double getAveragedPrediction(final int seenPosition, final int unseenPosition) {
         return IntStream.rangeClosed(1, ROUNDS)
                 .mapToDouble(round -> getPrediction(round, seenPosition, unseenPosition))
+                .filter(d -> d > 0d)
                 .average()
-                .getAsDouble();
+                .orElse(0d);
     }
 
     private double getPrediction(int round, int seenPosition, int unseenPosition) {

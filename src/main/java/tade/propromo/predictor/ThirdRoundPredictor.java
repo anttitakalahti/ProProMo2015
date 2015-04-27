@@ -49,7 +49,7 @@ public class ThirdRoundPredictor implements Predictor {
                     }
 
                     prediction[0] = Math.max(0.0001, 0.99 - confidence);
-                    return splitRemainingProbabilityForNulls(prediction);
+                    // return splitRemainingProbabilityForNulls(prediction);
                 }
 
             }
@@ -72,18 +72,15 @@ public class ThirdRoundPredictor implements Predictor {
 
         int lastSeenValueInThisPeak = getLastSeenValueInThisPeak(peak, previousValues);
 
-        if (lastSeenValueInThisPeak < 3)  { lastSeenValueInThisPeak = 3; }  // I R Lazy
         if (lastSeenValueInThisPeak > 97) { lastSeenValueInThisPeak = 97; } // -- || --
 
-        IntStream.rangeClosed(lastSeenValueInThisPeak - 2, lastSeenValueInThisPeak + 2).forEach(index -> {
+        IntStream.rangeClosed(lastSeenValueInThisPeak, lastSeenValueInThisPeak + 2).forEach(index -> {
             if (prediction[index] == null) {
                 prediction[index] = 0d;
             }
         });
 
-        prediction[lastSeenValueInThisPeak - 2] += 5d/39 * probabilityForPeak;
-        prediction[lastSeenValueInThisPeak - 1] += 8d/39 * probabilityForPeak;
-        prediction[lastSeenValueInThisPeak]     += 1d/3  * probabilityForPeak;
+        prediction[lastSeenValueInThisPeak]     += 2d/3  * probabilityForPeak;
         prediction[lastSeenValueInThisPeak + 1] += 8d/39 * probabilityForPeak;
         prediction[lastSeenValueInThisPeak + 2] += 5d/39 * probabilityForPeak;
 
