@@ -2,7 +2,7 @@
 % 
 % last updated 2013/02/15 for tkltiki2 v1.02
 
-\documentclass[english]{tktltiki2}
+\documentclass[english,12pt]{tktltiki2}
 
 % tktltiki2 automatically loads babel, so you can simply
 % give the language parameter (e.g. finnish, swedish, english, british) as
@@ -31,6 +31,9 @@
 \usepackage{microtype}
 \usepackage{amsfonts,amsmath,amssymb,amsthm,booktabs,color,enumitem,graphicx}
 \usepackage[pdftex,hidelinks]{hyperref}
+
+\usepackage{wrapfig,lipsum,booktabs}
+\usepackage{siunitx}
 
 % Automatically set the PDF metadata fields
 \makeatletter
@@ -68,7 +71,7 @@
 \title{Project in Probabilistic Models}
 \author{Antti Takalahti}
 \date{\today}
-\level{Seminar report}
+\level{Project report}
 \abstract{Abstract.}
 
 % The following can be used to specify keywords and classification of the paper:
@@ -101,6 +104,10 @@
 %
 
 
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex}
+\setlength{\parindent}{0pt}
+\linespread{1.5}
+
 \begin{document}
 
 % --- Front matter ---
@@ -124,60 +131,57 @@ The task was to write a predictor that produces a probability distribution for 1
 
 The task was split into three rounds, and a sample data was provided for each round. Total score was calculated by taking the natural logarithm for each probability per correct value and these were summed.
 
-Initial algorithm was provided by Johannes Verwijnen, who was the teaching assistant for the course.
-
+Initial algorithm was provided by Johannes Verwijnen, who was the teaching assistant for the course and the code is hosted on GitHub and can be accessed using the URL https://github.com/anttitakalahti/ProProMo2015 and any files mentioned are found there.
 
 \section{First round}
 
-I created a modular system where I could evaluate many different predictors to get an idea about their performance. I ended up using Java as a programming language as the example was written using Java. I added Apache Maven and set up Docker to have Maven installed. I had not used Docker before so this took some time, but I feel that it was time well spent. I feel that I got the system set up pretty nicely and it helped with implementing and evaluating different ideas about possible predictions.
+I created a modular system where I could evaluate many different predictors to get an idea about their performance. I ended up using Java as a programming language as the example was written in Java. I added Apache Maven and set up Docker to have it installed on the system. I had not used Docker before so this took some time, but I feel that it was time well spent. I got the system set up pretty nicely and it helped with implementing and evaluating different ideas about possible predictions.
 
-I took a look peak into the data and noticed that the initial guess to predict previously seen value and its neighbour was silly and I managed to double the performance by removing that aspect. In the end I used a zero predictor for the first round with a score of -284 229.
+I took a look peak into the data and noticed that the initial guess to predict previously seen value and its neighbour was silly and I managed to double the performance by removing that aspect. In the end I used a zero predictor for the first round with a score of \num{-284229} which is about 0.39 per correct value.
 
 \section{Second round}
 
-First I converted all non zero values to x and searched for patterns, but sadly there weren?t any. I got 35 894 different patterns with two patterns having 5843 and 4189 rows and the rest had under 1000 rows each. The sample data had 67 785 rows total.
+First I converted all non zero values to x and searched for patterns, but sadly there weren't any. I got \num{35894} different patterns with two patterns having 5843 and 4189 rows and the rest had under 1000 rows each. The sample data had \num{67785} rows total.
 
-I then calculated the zero probabilities for each column and noticed that positions 16 (0.2718) and 50 (0.2636) look interesting. I started to predict these columns with zero probability < 0.5 and got better results. I ended up calculating smoothed probabilities for each value in each position and got a score of -89 150.
+I then calculated the zero probabilities for each column and noticed that positions 16 (0.2718) and 50 (0.2636) look interesting. I started to predict these columns with zero probability < 0.5 and got better results. I ended up calculating smoothed probabilities for each value in each position and got a score of \num{-89150} which is close to 0.75 for each guess. 
 
 \section{Third round}
 
-I made a matrix on how well a non zero value in each position predicts a non zero value in the following positions.
+For the third round I had the system set up perfectly so that I could try out new ideas and get instant feedback on them. I added a Statistics class and calculated means and variances and noticed that means are around 60-80 and variances vary a lot. 
 
-I created a class called ?Peak? to group values that are close together. 
+I modelled a situation where values group together by adding a class called Peak where values in a row are grouped so that there is no gaps of more than 5 in values. It's not the greatest name in hindsight, but I got the feeling that the following value is close to previous value but then there were jumps. as if there were two different peaks simultaneously. The file /data/peaks.txt contains more information about the peaks. Like max value - min value, where you can see that 1 has \num{35176} appearances and 2 has \num{30144} and so on. 
 
-Finally I noticed that peak values grew as time went by.
+\begin{wraptable}{r}{5cm}
+\caption{Item counts for Peaks in rounds 1 and 2}\label{item_counts}
+\begin{tabular}{c | r | r}
+Items & Round 1 & Round 2 \\
+\hline
+1 & 6092 & 6478 \\
+2 & 2418 & 2925 \\
+3 & 2493 & 2924 \\
+4 & 5014 & 5456 \\
+5 & \num{79685} & \num{83706} \\
+6 & 4533 & 4552 \\
+7 & 3106 & 3371 \\
+8 & 3130 & 3222 \\
+9 & 3699 & 3794 \\
+10 & 8369 & 7354
+\end{tabular}
+\end{wraptable}
 
-In the end I ended up using the same predictor from the second round.
+I also calculated probabilities for each value and found that the value is never smaller than 36 or larger than 84. The item count is the most interesting data in peaks. You can see that a large number of Peaks have five items in them and I have no explanation for this phenomenon. It sounded like no one in the class did know what would cause this. 
+
+Finally I added a matrix to see how a value in each position predicts a value in the following positions and that data is in file predictor\_matrix\_3.txt under /src/main/resources/statistics/ but it did not yield a better score than using the updated probabilities from round 2. 
+
+I submitted the final solution with a score of \num{74389}, which is about 0.78 for each correct value.
+
 
 \section{Thoughts}
 
-I learned some real world skills.
+I learned some real world skills in using Docker container. Test Driven Development approach is not at best when trying to explore options and the final approach is unclear,  but it helped in fixing bugs and I would use it again even though it was not perfectly suited for this kind of task. I had to keep an eye on not doing the things that were most comfortable for me like the actual programming and optimising the quality of the code instead of trying to solve the actual problem.
 
-I got some laughs from an old flame war on TDD and sudoku.
+I tried to focus too much on trying to guess if there is a value in position and not enough on what that value might be. I failed to notice significance in patterns like a row with five values of 59 in the first round. The Peak might have helped and I got it close to my best solution but It did not exceed the score in any time.
 
-Predicting exact values was hard.
-
-% --- References ---
-%
-% bibtex is used to generate the bibliography. The babplain style
-% will generate numeric references (e.g. [1]) appropriate for theoretical
-% computer science. If you need alphanumeric references (e.g [Tur90]), use
-%
-% \bibliographystyle{babalpha-lf}
-%
-% instead.
-
-\bibliographystyle{babplain-lf}
-\bibliography{references-en}
-
-
-% --- Appendices ---
-
-% uncomment the following
-
-% \newpage
-% \appendix
-% 
-% \section{Example appendix}
+I had fun in this course and I would recommend this to anyone. The setup seems strange and it is impossible to know how much time you will spend since there are no guaranteed paths to success like in other school problems, but I feel that it gives a nice taste about the real world problems.
 
 \end{document}

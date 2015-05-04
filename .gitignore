@@ -5,4 +5,13 @@ target
 
 .idea
 
-src/main/java/tade/propromo/Foo.java
+
+report/references-en.bib
+report/references-fi.bib
+report/*.aux
+report/*.dvi
+report/*.log
+report/*.out
+report/template-en.pdf
+report/*.gz
+report/*.toc
